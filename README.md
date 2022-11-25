@@ -68,5 +68,6 @@ npx solhint 'contracts/**/*.sol' --fix
 Run Prettier:
 
 ```
-npx prettier '**/*.{sol}' --write
+npx prettier '**/*.{json,sol,md}' --check
+npx prettier '**/*.{json,sol,md}' --write
 ```
