@@ -12,7 +12,7 @@ contract ActiveCitizens is Ownable {
      * @dev if the address already exists, it should not be added again
      */
     function _addCitizen(address addr) public onlyOwner {
-        // Impliment a better way to add addresses. This isn't gas efficient
+        // Impliment a better way to add addresses. This isn't efficient
         citizens.push(addr);
     }
 
