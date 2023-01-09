@@ -39,16 +39,6 @@ Check if coverage threshold has been met:
 npx istanbul check-coverage --lines 80
 ```
 
-## Local Ethereum Node
-
-Start a local Ethereum network node:
-
-```
-npx hardhat node
-```
-
-This will start Hardhat Network, and expose it as a JSON-RPC and Websocket server at http://127.0.0.1:8545/.
-
 ## Linters
 
 Run ESLint:
@@ -70,4 +60,36 @@ Run Prettier:
 ```
 npx prettier '**/*.{json,sol,md}' --check
 npx prettier '**/*.{json,sol,md}' --write
+```
+
+## Local Ethereum Node
+
+Start a local Ethereum network node:
+
+```
+npx hardhat node
+```
+
+This will start Hardhat Network, and expose it as a JSON-RPC and Websocket server at http://127.0.0.1:8545/.
+
+## Deploy to Local Ethereum Node
+
+```
+npx hardhat run scripts/deploy.ts
+```
+
+## Deploy to Test Network
+
+Add an `.env` file, and set the variables:
+
+```
+cp .env.example .env
+```
+
+```
+npx hardhat run scripts/deploy.ts --network goerli
+```
+
+```
+npx hardhat verify --network goerli <address>
 ```
