@@ -50,7 +50,7 @@ npx eslint '**/*.{js,ts}' --fix
 Run Solhint:
 
 ```
-npx solhint 'contracts/**/*.sol' --fix
+npx solhint 'contracts/*.sol' --fix
 ```
 
 ## Prettier
