@@ -1,18 +1,18 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("ActiveCitizens contract", function () {
+describe("NationCred contract", function () {
   async function deployActiveCitizens() {
-    const ActiveCitizens = await ethers.getContractFactory("ActiveCitizens");
-    const activeCitizens = await ActiveCitizens.deploy();
-    await activeCitizens.deployed();
+    const NationCred = await ethers.getContractFactory("NationCred");
+    const nationCred = await NationCred.deploy();
+    await nationCred.deployed();
   }
 
   it("Should add new citizen to list of active citizens", async function () {
 
   });
 
-  it("Should check if citizen already exist on active citizen list", async function() {
+  it("Should check if citizen already exist on active citizen list", async function () {
 
   });
 
