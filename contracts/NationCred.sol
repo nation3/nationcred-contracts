@@ -14,11 +14,6 @@ contract NationCred {
 
     // address[] citizens;
 
-    // TO-DO: Create root hash from merkle tree
-    constructor(bytes32 _root) {
-        root = _root;
-    }
-
     // /**
     //  * @notice push an address to nation3 active citizen array
     //  * @dev if the address already exists, it should not be added again
@@ -46,17 +41,18 @@ contract NationCred {
     //     return citizens;
     // }
 
-    // TO-DO: Add access control with role
+    // TO-DO: Add access control with role and add modifier to function
+    // TO-DO: Create root hash from merkle tree
     function updateRootHash(bytes32 _root) public {
         root = _root;
     }
 
-    function isValid(bytes32[] memory proof, bytes32 leaf)
-        public
-        view
-        returns (bool)
-    {
-        return MerkleProof.verify(proof, root, leaf);
+    // leaf = hashed eth address per sender - this is where my issue is
+    // in this case the citizens have to run this themselves
+    function isValid(bytes32[] calldata proof) public view returns (bool) {
+        bytes32 leaf = keccak256(abi.encodePacked(msg.sender));
+        require(MerkleProof.verify(proof, root, leaf), "Incorrect proof");
+        return true;
     }
 
     function isActiveCitizen(address account) external view returns (bool) {}
