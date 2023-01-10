@@ -1,15 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-// To-Do: Change access control mechanism
-// import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-contract ActiveCitizens {
+/**
+ * @title NationCred
+ * @author Nation3
+ * @notice This contract will store proof of active Nation3 citizens using Merkle Proof for allowlist
+ */
+contract NationCred {
+    // Root hash generated from Merkle tree
     bytes32 public root;
 
     // address[] citizens;
 
+    // TO-DO: Create root hash from merkle tree
     constructor(bytes32 _root) {
         root = _root;
     }
@@ -37,21 +42,14 @@ contract ActiveCitizens {
     //  * @notice view address of active citizens
     //  */
     // function viewActiveCitizen() public view returns (address[] memory) {
-    //     // not the best solution for array that will grow indefinately
+    //     // not the best solution for arrays that will grow indefinately
     //     return citizens;
     // }
 
-    // function _leaf(address account) internal pure returns (bytes32) {
-    //     return keccak256(abi.encodePacked(account));
-    // }
-
-    // function _verify(bytes32 leaf, bytes32[] memory proof)
-    //     internal
-    //     view
-    //     returns (bool)
-    // {
-    //     return MerkleProof.verify(proof, root, leaf);
-    // }
+    // TO-DO: Add access control with role
+    function updateRootHash(bytes32 _root) public {
+        root = _root;
+    }
 
     function isValid(bytes32[] memory proof, bytes32 leaf)
         public
@@ -60,4 +58,6 @@ contract ActiveCitizens {
     {
         return MerkleProof.verify(proof, root, leaf);
     }
+
+    function isActiveCitizen(address account) external view returns (bool) {}
 }

@@ -8,9 +8,8 @@ export function createActiveCitizen() {
     }
     console.log("This is a Merkle tree for Nation3 active citizen")
 
-    let activeCitizen = [
-        // Get list from active-citizen csv.
-    ]
+    // Get list from active-citizen csv.
+    let activeCitizen = []
 
     const leaves = activeCitizen.map(addr => padBuffer(addr))
     const merkletree = new MerkleTree(leaves, keccak256, { sortPairs: true })
