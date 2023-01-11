@@ -93,3 +93,25 @@ npx hardhat run scripts/deploy.ts --network goerli
 ```
 npx hardhat verify --network goerli <address>
 ```
+
+## Deploy to Main Network
+
+Set the `MAINNET_URL` in `.env`.
+
+```
+npx hardhat run scripts/deploy.ts --network mainnet
+```
+
+```
+npx hardhat verify --network mainnet <address>
+```
+
+## Deployments
+
+### Goerli
+
+GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
+
+### Mainnet
+
+GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
