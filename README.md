@@ -79,7 +79,7 @@ This will start Hardhat Network, and expose it as a JSON-RPC and Websocket serve
 ## Deploy to Local Ethereum Node
 
 ```
-npx hardhat run scripts/deploy.ts
+npx hardhat run scripts/deploy-<contract>.ts
 ```
 
 ## Deploy to Test Network
@@ -91,7 +91,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy.ts --network goerli
+npx hardhat run scripts/deploy-<contract>.ts --network goerli
 ```
 
 ```
@@ -103,7 +103,7 @@ npx hardhat verify --network goerli <address>
 Set the `MAINNET_URL` in `.env`.
 
 ```
-npx hardhat run scripts/deploy.ts --network mainnet
+npx hardhat run scripts/deploy-<contract>.ts --network mainnet
 ```
 
 ```
@@ -115,6 +115,7 @@ npx hardhat verify --network mainnet <address>
 ### Goerli
 
 - GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
+- Discord.sol: `0xa8048ED1F7123018E3f149E99a3Ef83e0Ec4A744`
 
 ### Mainnet
 
