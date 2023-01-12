@@ -20,6 +20,10 @@ npx hardhat compile
 Run unit tests:
 
 ```
+export REPORT_GAS=true
+```
+
+```
 npx hardhat test
 ```
 
