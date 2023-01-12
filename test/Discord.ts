@@ -24,7 +24,6 @@ describe("Discord", function () {
     console.log("owner.address:", owner.address);
 
     await discord.updateUsername("User");
-
     const usernameAfterUpdate = await discord.usernames(owner.address);
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
     expect(usernameAfterUpdate).to.equal("User");
@@ -39,7 +38,6 @@ describe("Discord", function () {
     console.log("owner.address:", owner.address);
 
     await discord.updateUsername("User Name");
-
     const usernameAfterUpdate = await discord.usernames(owner.address);
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
     expect(usernameAfterUpdate).to.equal("User Name");
@@ -54,9 +52,27 @@ describe("Discord", function () {
     console.log("owner.address:", owner.address);
 
     await discord.updateUsername("User Name ☁🇺🇳");
-
     const usernameAfterUpdate = await discord.usernames(owner.address);
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
     expect(usernameAfterUpdate).to.equal("User Name ☁🇺🇳");
+  });
+
+  it("deleteUsername", async function () {
+    const Discord = await ethers.getContractFactory("Discord");
+    const discord = await Discord.deploy();
+    await discord.deployed();
+
+    const [owner] = await ethers.getSigners();
+    console.log("owner.address:", owner.address);
+
+    await discord.updateUsername("User #123");
+    const usernameAfterUpdate = await discord.usernames(owner.address);
+    console.log("usernameAfterUpdate:", usernameAfterUpdate);
+    expect(usernameAfterUpdate).to.equal("User #123");
+
+    await discord.deleteUsername();
+    const usernameAfterDeletion = await discord.usernames(owner.address);
+    console.log("usernameAfterDeletion:", usernameAfterDeletion);
+    expect(usernameAfterDeletion).to.equal("");
   });
 });

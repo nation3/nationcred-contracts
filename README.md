@@ -115,7 +115,7 @@ npx hardhat verify --network mainnet <address>
 ### Goerli
 
 - GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
-- Discord.sol: `0xa8048ED1F7123018E3f149E99a3Ef83e0Ec4A744`
+- Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 
 ### Mainnet
 
