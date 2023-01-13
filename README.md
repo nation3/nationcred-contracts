@@ -120,3 +120,4 @@ npx hardhat verify --network mainnet <address>
 ### Mainnet
 
 - GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
+- Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
