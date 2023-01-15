@@ -20,6 +20,10 @@ npx hardhat compile
 Run unit tests:
 
 ```
+export REPORT_GAS=true
+```
+
+```
 npx hardhat test
 ```
 
@@ -75,7 +79,7 @@ This will start Hardhat Network, and expose it as a JSON-RPC and Websocket serve
 ## Deploy to Local Ethereum Node
 
 ```
-npx hardhat run scripts/deploy.ts
+npx hardhat run scripts/deploy-<contract>.ts
 ```
 
 ## Deploy to Test Network
@@ -87,7 +91,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy.ts --network goerli
+npx hardhat run scripts/deploy-<contract>.ts --network goerli
 ```
 
 ```
@@ -99,7 +103,7 @@ npx hardhat verify --network goerli <address>
 Set the `MAINNET_URL` in `.env`.
 
 ```
-npx hardhat run scripts/deploy.ts --network mainnet
+npx hardhat run scripts/deploy-<contract>.ts --network mainnet
 ```
 
 ```
@@ -110,8 +114,10 @@ npx hardhat verify --network mainnet <address>
 
 ### Goerli
 
-GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
+- GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
+- Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 
 ### Mainnet
 
-GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
+- GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
+- Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
