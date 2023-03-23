@@ -16,7 +16,6 @@ describe("NationCred", function () {
     const NationCred = await ethers.getContractFactory("NationCred");
     const nationCred = await NationCred.deploy();
     await nationCred.deployed();
-    
     expect(await nationCred.isActive(40)).to.equal(false);
     expect(await nationCred.isActive(42)).to.equal(false);
     expect(await nationCred.isActive(44)).to.equal(false);
@@ -27,7 +26,7 @@ describe("NationCred", function () {
     const nationCred = await NationCred.deploy();
     await nationCred.deployed();
 
-    await nationCred.setActiveCitizens([40,42,44]);
+    await nationCred.setActiveCitizens([40, 42, 44]);
 
     expect(await nationCred.isActive(40)).to.equal(true);
     expect(await nationCred.isActive(42)).to.equal(true);
@@ -39,7 +38,7 @@ describe("NationCred", function () {
     const nationCred = await NationCred.deploy();
     await nationCred.deployed();
 
-    await nationCred.setActiveCitizens([40,42,44]);
+    await nationCred.setActiveCitizens([40, 42, 44]);
 
     await nationCred.setActiveCitizens([42]);
 
