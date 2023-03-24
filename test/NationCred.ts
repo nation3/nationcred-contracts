@@ -56,8 +56,8 @@ describe("NationCred", function () {
     for (let i = 0; i < 420; i++) {
       passportIDs.push(i);
     }
-    console.log('passportIDs:', passportIDs);
-    
+    console.log("passportIDs:", passportIDs);
+
     await nationCred.setActiveCitizens(passportIDs);
 
     expect(await nationCred.isActive(0)).to.equal(true);
