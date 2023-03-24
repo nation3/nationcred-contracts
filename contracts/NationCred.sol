@@ -9,8 +9,7 @@ import "./INationCred.sol";
 contract NationCred is INationCred {
     address public owner;
 
-    mapping(uint16 => bool) public activeCitizens;
-    uint16[] public passportIDs;
+    uint16[] private passportIDs;
 
     constructor() {
         owner = address(msg.sender);
@@ -23,16 +22,15 @@ contract NationCred is INationCred {
 
     function setActiveCitizens(uint16[] calldata updatedPassportIDs) public {
         require(msg.sender == owner, "You are not the owner");
-        for (uint16 i = 0; i < passportIDs.length; i++) {
-            activeCitizens[passportIDs[i]] = false;
-        }
-        for (uint16 i = 0; i < updatedPassportIDs.length; i++) {
-            activeCitizens[updatedPassportIDs[i]] = true;
-        }
         passportIDs = updatedPassportIDs;
     }
 
     function isActive(uint16 passportID) public view returns (bool) {
-        return activeCitizens[passportID];
+        for (uint16 i = 0; i < passportIDs.length; i++) {
+            if (passportIDs[i] == passportID) {
+                return true;
+            }
+        }
+        return false;
     }
 }
