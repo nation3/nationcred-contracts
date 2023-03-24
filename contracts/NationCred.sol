@@ -21,20 +21,15 @@ contract NationCred is INationCred {
         owner = owner_;
     }
 
-    function setActiveCitizens(uint16[] calldata passportIDs_) public {
+    function setActiveCitizens(uint16[] calldata updatedPassportIDs) public {
         require(msg.sender == owner, "Only the owner can call this function");
-
-        // Reset existing mapping
         for (uint16 i = 0; i < passportIDs.length; i++) {
             activeCitizens[passportIDs[i]] = false;
         }
-
-        // Set new mapping
-        for (uint16 i = 0; i < passportIDs_.length; i++) {
-            activeCitizens[passportIDs_[i]] = true;
+        for (uint16 i = 0; i < updatedPassportIDs.length; i++) {
+            activeCitizens[updatedPassportIDs[i]] = true;
         }
-
-        passportIDs = passportIDs_;
+        passportIDs = updatedPassportIDs;
     }
 
     function isActive(uint16 passportID) public view returns (bool) {
