@@ -46,4 +46,26 @@ describe("NationCred", function () {
     expect(await nationCred.isActive(42)).to.equal(true);
     expect(await nationCred.isActive(44)).to.equal(false);
   });
+
+  it("setActiveCitizens - set 420 passport IDs", async function () {
+    const NationCred = await ethers.getContractFactory("NationCred");
+    const nationCred = await NationCred.deploy();
+    await nationCred.deployed();
+
+    const passportIDs = [];
+    for (let i = 0; i < 420; i++) {
+      passportIDs.push(i);
+    }
+    console.log('passportIDs:', passportIDs);
+    
+    await nationCred.setActiveCitizens(passportIDs);
+
+    expect(await nationCred.isActive(0)).to.equal(true);
+    expect(await nationCred.isActive(100)).to.equal(true);
+    expect(await nationCred.isActive(200)).to.equal(true);
+    expect(await nationCred.isActive(300)).to.equal(true);
+    expect(await nationCred.isActive(400)).to.equal(true);
+    expect(await nationCred.isActive(419)).to.equal(true);
+    expect(await nationCred.isActive(420)).to.equal(false);
+  });
 });
