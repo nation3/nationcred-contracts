@@ -17,12 +17,12 @@ contract NationCred is INationCred {
     }
 
     function setOwner(address owner_) public {
-        require(msg.sender == owner, "Only the owner can call this function");
+        require(msg.sender == owner, "You are not the owner");
         owner = owner_;
     }
 
     function setActiveCitizens(uint16[] calldata updatedPassportIDs) public {
-        require(msg.sender == owner, "Only the owner can call this function");
+        require(msg.sender == owner, "You are not the owner");
         for (uint16 i = 0; i < passportIDs.length; i++) {
             activeCitizens[passportIDs[i]] = false;
         }
