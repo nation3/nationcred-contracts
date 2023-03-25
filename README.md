@@ -40,7 +40,7 @@ npx hardhat coverage
 Check if coverage threshold has been met:
 
 ```
-npx istanbul check-coverage --lines 80
+npx istanbul check-coverage --lines 90
 ```
 
 ## Linters
@@ -91,11 +91,11 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy-<contract>.ts --network goerli
+npx hardhat run scripts/deploy-<contract>.ts --network sepolia
 ```
 
 ```
-npx hardhat verify --network goerli <address>
+npx hardhat verify --network sepolia <address>
 ```
 
 ## Deploy to Main Network
@@ -116,6 +116,10 @@ npx hardhat verify --network mainnet <address>
 
 - GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
+
+### Sepolia
+
+- NationCred.sol: `0xdc5dE9960aAf60CE8C773f88E7F3cC9E8dD62130`
 
 ### Mainnet
 
