@@ -20,9 +20,9 @@ contract NationCred is INationCred {
         owner = owner_;
     }
 
-    function setActiveCitizens(uint16[] calldata updatedPassportIDs) public {
+    function setActiveCitizens(uint16[] calldata passportIDs_) public {
         require(msg.sender == owner, "You are not the owner");
-        passportIDs = updatedPassportIDs;
+        passportIDs = passportIDs_;
     }
 
     function isActive(uint16 passportID) public view returns (bool) {
