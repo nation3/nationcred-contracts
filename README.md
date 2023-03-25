@@ -125,4 +125,5 @@ npx hardhat verify --network mainnet <address>
 
 - GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
 - Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
-- Discourse: `0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`
+- Discourse.sol: `0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`
+- NationCred.sol: `0x6E6FceE39185b900821c2f67671ba8C28e342cda`
