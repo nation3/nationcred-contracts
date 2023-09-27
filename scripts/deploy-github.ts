@@ -15,7 +15,8 @@ async function main() {
 
   // We get the contract to deploy
   const GitHub = await ethers.getContractFactory("GitHub");
-  const github = await GitHub.deploy();
+  const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
+  const github = await GitHub.deploy(veTokenAddress);
 
   await github.deployed();
 
