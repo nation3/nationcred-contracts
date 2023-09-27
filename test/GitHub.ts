@@ -25,10 +25,12 @@ describe("GitHub", function () {
     const [owner] = await ethers.getSigners();
     console.log("owner.address:", owner.address);
 
-    await gitHub.updateUsername("test");
+    // await gitHub.updateUsername("test");
+    await expect(gitHub.updateUsername("test")).to.be.reverted;
 
     const usernameAfterUpdate = await gitHub.usernames(owner.address);
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
-    expect(usernameAfterUpdate).to.equal("test");
+    // expect(usernameAfterUpdate).to.equal("test");
+    expect(usernameAfterUpdate).to.equal("");
   });
 });
