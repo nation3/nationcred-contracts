@@ -1,14 +1,10 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.17;
 
-import "hardhat/console.sol";
-
 contract GitHub {
     mapping(address => string) public usernames;
 
     constructor() {
-        console.log("constructor");
-
         // Include usernames that have been previously added to SourceCred
         usernames[0x4e3072f7b5C075EA5FdEb423DA95312C4B99dc22] = "aahna-ashina";
         usernames[
@@ -21,7 +17,6 @@ contract GitHub {
     }
 
     function updateUsername(string calldata username) public {
-        console.log("updateUsername");
         usernames[msg.sender] = username;
     }
 }
