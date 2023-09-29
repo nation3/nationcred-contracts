@@ -33,4 +33,9 @@ contract NationCred is INationCred {
         }
         return false;
     }
+
+    function isPassportExpired(address citizen) public view returns (bool) {
+        // TO DO
+        return true;
+    }
 }
