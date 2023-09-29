@@ -68,4 +68,14 @@ describe("NationCred", function () {
     expect(await nationCred.isActive(419)).to.equal(true);
     expect(await nationCred.isActive(420)).to.equal(false);
   });
+
+  it("isPassportExpired - no passport", async function() {
+    const [owner] = await ethers.getSigners();
+
+    const NationCred = await ethers.getContractFactory("NationCred");
+    const nationCred = await NationCred.deploy();
+    await nationCred.deployed();
+
+    expect(await nationCred.isPassportExpired(owner.address)).to.equal(true);
+  });
 });
