@@ -6,7 +6,7 @@ interface IPassportUtils {
     // isPassportOwner
 
     /**
-     * Returns `true` if a citizen's vote-escrowed `$NATION` balance has 
+     * Returns `true` if a citizen's vote-escrowed `$NATION` balance has
      * dropped below the passport expiry threshold; `false` otherwise.
      *
      * @param citizen The address of the passport owner
