@@ -69,7 +69,7 @@ describe("NationCred", function () {
     expect(await nationCred.isActive(420)).to.equal(false);
   });
 
-  it("isPassportExpired - no passport", async function() {
+  it("isPassportExpired - no passport", async function () {
     const [owner] = await ethers.getSigners();
 
     const NationCred = await ethers.getContractFactory("NationCred");
