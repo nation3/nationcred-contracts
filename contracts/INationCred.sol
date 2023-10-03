@@ -8,4 +8,11 @@ interface INationCred {
      * @param passportID The NFT passport ID
      */
     function isActive(uint16 passportID) external view returns (bool);
+
+    /**
+     * Returns `true` if the address belongs to an active Nation3 Citizen; `false` otherwise.
+     *
+     * @param citizen The address of an NFT passport's owner
+     */
+    function isActive(address citizen) external view returns (bool);
 }
