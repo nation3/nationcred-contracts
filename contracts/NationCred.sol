@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.17;
 
-import {INationCred} from "./INationCred.sol";
-import {IERC721} from "@openzeppelin/contracts/interfaces/IERC721.sol";
+import "./INationCred.sol";
+import "@openzeppelin/contracts/interfaces/IERC721.sol";
 
 /**
  * @notice Stores the passport IDs of active Nation3 citizens.
@@ -12,9 +12,9 @@ contract NationCred is INationCred {
     IERC721 public passport;
     uint16[] private passportIDs;
 
-    constructor() {
+    constructor(address passportAddress) {
         owner = address(msg.sender);
-        passport = IERC721(0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333);
+        passport = IERC721(passportAddress);
     }
 
     function setOwner(address owner_) public {
