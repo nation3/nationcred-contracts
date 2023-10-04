@@ -100,7 +100,11 @@ npx hardhat verify --network sepolia <address>
 
 ## Deploy to Main Network
 
-Set the `MAINNET_URL` in `.env`.
+Add an `.env` file, and set the variables:
+
+```
+cp .env.example .env
+```
 
 ```
 npx hardhat run scripts/deploy-<contract>.ts --network mainnet
