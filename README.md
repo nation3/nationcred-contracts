@@ -123,7 +123,7 @@ npx hardhat verify --network mainnet <address>
 
 ### Sepolia
 
-- NationCred.sol: `0xdc5dE9960aAf60CE8C773f88E7F3cC9E8dD62130`
+- NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
 
 ### Mainnet
 
