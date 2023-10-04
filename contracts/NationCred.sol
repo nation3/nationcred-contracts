@@ -27,7 +27,7 @@ contract NationCred is INationCred {
         passportIDs = passportIDs_;
     }
 
-    function isActive(uint16 passportID) public view returns (bool) {
+    function isActiveID(uint16 passportID) public view returns (bool) {
         for (uint16 i = 0; i < passportIDs.length; i++) {
             if (passportIDs[i] == passportID) {
                 return true;
@@ -36,7 +36,7 @@ contract NationCred is INationCred {
         return false;
     }
 
-    function isActiveByAddress(address citizen) public view returns (bool) {
+    function isActiveAddress(address citizen) public view returns (bool) {
         for (uint16 i = 0; i < passportIDs.length; i++) {
             uint256 passportID = passportIDs[i];
             address passportOwner = passport.ownerOf(passportID);
