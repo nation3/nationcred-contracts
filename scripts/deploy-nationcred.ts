@@ -15,7 +15,8 @@ async function main() {
 
   // We get the contract to deploy
   const NationCred = await ethers.getContractFactory("NationCred");
-  const nationCred = await NationCred.deploy();
+  const passportAddress = "0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333";
+  const nationCred = await NationCred.deploy(passportAddress);
 
   await nationCred.deployed();
 

@@ -100,7 +100,11 @@ npx hardhat verify --network sepolia <address>
 
 ## Deploy to Main Network
 
-Set the `MAINNET_URL` in `.env`.
+Add an `.env` file, and set the variables:
+
+```
+cp .env.example .env
+```
 
 ```
 npx hardhat run scripts/deploy-<contract>.ts --network mainnet
@@ -119,11 +123,11 @@ npx hardhat verify --network mainnet <address>
 
 ### Sepolia
 
-- NationCred.sol: `0xdc5dE9960aAf60CE8C773f88E7F3cC9E8dD62130`
+- NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
 
 ### Mainnet
 
 - GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
 - Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
 - Discourse.sol: `0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`
-- NationCred.sol: `0x6E6FceE39185b900821c2f67671ba8C28e342cda`
+- NationCred.sol: `0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`
