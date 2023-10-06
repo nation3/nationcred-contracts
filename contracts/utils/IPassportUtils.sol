@@ -5,14 +5,14 @@ interface IPassportUtils {
     /**
      * Returns `true` if a citizen's passport has become revocable.
      *
-     * @param passportID The NFT passport ID
+     * @param citizen The address of an NFT passport's owner
      */
-    function isExpired(uint16 passportID) external view returns (bool);
+    function isExpired(address citizen) external view returns (bool);
 
     // /**
     //  * Returns the Unix epoch time when the passport will become revocable.
     //  *
     //  * @param passportID The NFT passport ID
     //  */
-    // function getExpirationTimestamp(uint16 passportID) external view returns (uint256);
+    // function getExpirationTime(uint16 passportID) external view returns (uint256);
 }
