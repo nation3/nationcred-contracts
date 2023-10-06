@@ -9,10 +9,20 @@ interface IPassportUtils {
      */
     function isExpired(address citizen) external view returns (bool);
 
-    // /**
-    //  * Returns the Unix epoch time when the passport will become revocable.
-    //  *
-    //  * @param passportID The NFT passport ID
-    //  */
-    // function getExpirationTime(uint16 passportID) external view returns (uint256);
+    /**
+     * Returns the Unix epoch timestamp when a citizen's passport will become revocable.
+     *
+     * @param citizen The address of an NFT passport's owner
+     */
+    function getExpirationTimestamp(
+        address citizen
+    ) external view returns (uint256);
+
+    /**
+     * Calculates the time when vote-escrowed `$NATION` will drop below the passport expiry threshold.
+     */
+    function calculateExpirationTimestamp(
+        uint256 lockAmount,
+        uint256 lockEnd
+    ) external view returns (uint256);
 }

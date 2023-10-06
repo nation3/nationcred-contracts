@@ -10,6 +10,4 @@ interface IVotingEscrow is IERC20 {
     }
 
     function locked(address) external view returns (LockedBalance memory);
-
-    // function balanceOf(address) external view returns (uint256);
 }

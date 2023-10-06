@@ -24,4 +24,19 @@ contract PassportUtils is IPassportUtils {
         console.log("votingEscrowBalance:", votingEscrowBalance);
         return votingEscrowBalance < revokeUnderBalance;
     }
+
+    function getExpirationTimestamp(
+        address citizen
+    ) public view returns (uint256) {
+        // TO DO
+        return 0;
+    }
+
+    function calculateExpirationTimestamp(
+        uint256 lockAmount,
+        uint256 lockEnd
+    ) public view returns (uint256) {
+        // TO DO
+        return 0;
+    }
 }
