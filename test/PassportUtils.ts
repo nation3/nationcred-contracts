@@ -70,55 +70,93 @@ describe("PassportUtils", function () {
     });
   });
 
-  describe("calculateThresholdTimestamp", function() {
-    it("votingEscrowThreshold 1.5 - should return 2 years into the future if 3 $NATION locked for 4 years", async function() {
+  describe("calculateThresholdTimestamp", function () {
+    it("votingEscrowThreshold 1.5 - should return 2 years into the future if 3 $NATION locked for 4 years", async function () {
       const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
         deploymentFixture
       );
 
-      const lockAmount = ethers.utils.parseUnits('3');
+      const lockAmount = ethers.utils.parseUnits("3");
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
-      
-      const lockEnd = new Date(new Date().getTime() + (4 * oneYearInMilliseconds));
-      console.log('lockEnd:', lockEnd);
+
+      const lockEnd = new Date(
+        new Date().getTime() + 4 * oneYearInMilliseconds
+      );
+      console.log("lockEnd:", lockEnd);
       const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
-      console.log('lockEndInSeconds:', lockEndInSeconds);
+      console.log("lockEndInSeconds:", lockEndInSeconds);
 
-      const votingEscrowThreshold = ethers.utils.parseUnits('1.5');
+      const votingEscrowThreshold = ethers.utils.parseUnits("1.5");
 
-      const expectedThresholdDate = new Date(new Date().getTime() + (2 * oneYearInMilliseconds));
-      console.log('expectedThresholdDate:', expectedThresholdDate);
-      const expectedThresholdDateInSeconds = Math.round(expectedThresholdDate.getTime() / 1_000);
-      console.log('expectedThresholdDateInSeconds:', expectedThresholdDateInSeconds);
+      const expectedThresholdDate = new Date(
+        new Date().getTime() + 2 * oneYearInMilliseconds
+      );
+      console.log("expectedThresholdDate:", expectedThresholdDate);
+      const expectedThresholdDateInSeconds = Math.round(
+        expectedThresholdDate.getTime() / 1_000
+      );
+      console.log(
+        "expectedThresholdDateInSeconds:",
+        expectedThresholdDateInSeconds
+      );
 
-      const calculatedThresholdTimestamp = await passportUtils.calculateThresholdTimestamp(lockAmount, ethers.BigNumber.from(lockEndInSeconds), votingEscrowThreshold);
-      console.log('calculatedThresholdTimestamp:', new Date(calculatedThresholdTimestamp * 1_000));
-      expect (calculatedThresholdTimestamp).to.equal(ethers.BigNumber.from(expectedThresholdDateInSeconds));
+      const calculatedThresholdTimestamp =
+        await passportUtils.calculateThresholdTimestamp(
+          lockAmount,
+          ethers.BigNumber.from(lockEndInSeconds),
+          votingEscrowThreshold
+        );
+      console.log(
+        "calculatedThresholdTimestamp:",
+        new Date(calculatedThresholdTimestamp * 1_000)
+      );
+      expect(calculatedThresholdTimestamp).to.equal(
+        ethers.BigNumber.from(expectedThresholdDateInSeconds)
+      );
     });
 
-    it("votingEscrowThreshold 1.5 - should return 3 years into the future if 6 $NATION locked for 4 years", async function() {
+    it("votingEscrowThreshold 1.5 - should return 3 years into the future if 6 $NATION locked for 4 years", async function () {
       const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
         deploymentFixture
       );
 
-      const lockAmount = ethers.utils.parseUnits('6');
+      const lockAmount = ethers.utils.parseUnits("6");
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
-      
-      const lockEnd = new Date(new Date().getTime() + (4 * oneYearInMilliseconds));
-      console.log('lockEnd:', lockEnd);
+
+      const lockEnd = new Date(
+        new Date().getTime() + 4 * oneYearInMilliseconds
+      );
+      console.log("lockEnd:", lockEnd);
       const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
-      console.log('lockEndInSeconds:', lockEndInSeconds);
+      console.log("lockEndInSeconds:", lockEndInSeconds);
 
-      const votingEscrowThreshold = ethers.utils.parseUnits('1.5');
+      const votingEscrowThreshold = ethers.utils.parseUnits("1.5");
 
-      const expectedThresholdDate = new Date(new Date().getTime() + (3 * oneYearInMilliseconds));
-      console.log('expectedThresholdDate:', expectedThresholdDate);
-      const expectedThresholdDateInSeconds = Math.round(expectedThresholdDate.getTime() / 1_000);
-      console.log('expectedThresholdDateInSeconds:', expectedThresholdDateInSeconds);
-      
-      const calculatedThresholdTimestamp = await passportUtils.calculateThresholdTimestamp(lockAmount, ethers.BigNumber.from(lockEndInSeconds), votingEscrowThreshold);
-      console.log('calculatedThresholdTimestamp:', new Date(calculatedThresholdTimestamp * 1_000));
-      expect (calculatedThresholdTimestamp).to.equal(ethers.BigNumber.from(expectedThresholdDateInSeconds));
+      const expectedThresholdDate = new Date(
+        new Date().getTime() + 3 * oneYearInMilliseconds
+      );
+      console.log("expectedThresholdDate:", expectedThresholdDate);
+      const expectedThresholdDateInSeconds = Math.round(
+        expectedThresholdDate.getTime() / 1_000
+      );
+      console.log(
+        "expectedThresholdDateInSeconds:",
+        expectedThresholdDateInSeconds
+      );
+
+      const calculatedThresholdTimestamp =
+        await passportUtils.calculateThresholdTimestamp(
+          lockAmount,
+          ethers.BigNumber.from(lockEndInSeconds),
+          votingEscrowThreshold
+        );
+      console.log(
+        "calculatedThresholdTimestamp:",
+        new Date(calculatedThresholdTimestamp * 1_000)
+      );
+      expect(calculatedThresholdTimestamp).to.equal(
+        ethers.BigNumber.from(expectedThresholdDateInSeconds)
+      );
     });
   });
 });
