@@ -32,11 +32,27 @@ contract PassportUtils is IPassportUtils {
         return 0;
     }
 
-    function calculateExpirationTimestamp(
+    function calculateThresholdTimestamp(
         uint256 lockAmount,
-        uint256 lockEnd
+        uint256 lockEnd,
+        uint256 votingEscrowThreshold
     ) public view returns (uint256) {
-        // TO DO
-        return 0;
+        console.log('lockAmount:', lockAmount);
+        console.log('lockEnd:', lockEnd);
+        console.log('votingEscrowThreshold:', votingEscrowThreshold);
+
+        uint256 maxLockPeriod = 4 * 365 days;
+        console.log('maxLockPeriod:', maxLockPeriod);
+        console.log('block.timestamp:', block.timestamp);
+        uint256 secondsUntilUnlock = lockEnd - block.timestamp;
+        console.log('secondsUntilUnlock:', secondsUntilUnlock);
+
+        uint256 thresholdPercentageOfLocked = 100 ether * votingEscrowThreshold / lockAmount;
+        console.log('thresholdPercentageOfLocked:', thresholdPercentageOfLocked);
+
+        uint256 secondsFromThresholdToUnlock = maxLockPeriod * thresholdPercentageOfLocked / 100 ether;
+        console.log('secondsFromThresholdToUnlock:', secondsFromThresholdToUnlock);
+
+        return lockEnd - secondsFromThresholdToUnlock;
     }
 }
