@@ -3,6 +3,7 @@ pragma solidity ^0.8.17;
 
 import "./IPassportUtils.sol";
 import "../passport/IPassportIssuer.sol";
+import "../governance/IVotingEscrow.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "hardhat/console.sol";
 
@@ -10,11 +11,11 @@ contract PassportUtils is IPassportUtils {
     using SafeERC20 for IERC20;
 
     IPassportIssuer public passportIssuer;
-    IERC20 public votingEscrow;
+    IVotingEscrow public votingEscrow;
 
     constructor(address passportIssuerAddress, address votingEscrowAddress) {
         passportIssuer = IPassportIssuer(passportIssuerAddress);
-        votingEscrow = IERC20(votingEscrowAddress);
+        votingEscrow = IVotingEscrow(votingEscrowAddress);
     }
 
     function isExpired(address citizen) public view returns (bool) {
@@ -28,8 +29,21 @@ contract PassportUtils is IPassportUtils {
     function getExpirationTimestamp(
         address citizen
     ) public view returns (uint256) {
-        // TO DO
-        return 0;
+        IVotingEscrow.LockedBalance memory lockedBalance = votingEscrow.locked(
+            citizen
+        );
+        uint256 lockAmount = uint256(int256(lockedBalance.amount));
+        console.log("lockAmount:", lockAmount);
+        uint256 lockEnd = lockedBalance.end;
+        console.log("lockEnd:", lockEnd);
+        uint256 revokeUnderBalance = passportIssuer.revokeUnderBalance();
+        console.log("revokeUnderBalance:", revokeUnderBalance);
+        return
+            calculateThresholdTimestamp(
+                lockAmount,
+                lockEnd,
+                revokeUnderBalance
+            );
     }
 
     function calculateThresholdTimestamp(
