@@ -38,8 +38,9 @@ describe("PassportUtils", function () {
     });
 
     it("should return true if voting escrow balance is 1.4999", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
+        deploymentFixture
+      );
 
       // Transfer 1.4999 $veNATION to the second account
       await votingEscrow.transfer(
@@ -53,8 +54,9 @@ describe("PassportUtils", function () {
     });
 
     it("should return false if voting escrow balance is 1.5000", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
+        deploymentFixture
+      );
 
       // Transfer 1.5000 $veNATION to the second account
       await votingEscrow.transfer(
@@ -70,8 +72,7 @@ describe("PassportUtils", function () {
 
   describe("calculateThresholdTimestamp", function () {
     it("votingEscrowThreshold 1.5 - 3 $NATION locked for 4 years", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("3");
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
@@ -113,8 +114,7 @@ describe("PassportUtils", function () {
     });
 
     it("votingEscrowThreshold 1.5 - 6 $NATION locked for 4 years", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("6");
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
@@ -158,8 +158,9 @@ describe("PassportUtils", function () {
 
   describe("getExpirationTimestamp", function () {
     it("votingEscrowThreshold 1.5 - 3 $NATION locked for 4 years", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { votingEscrow, passportUtils, owner } = await loadFixture(
+        deploymentFixture
+      );
 
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
@@ -203,8 +204,9 @@ describe("PassportUtils", function () {
     });
 
     it("votingEscrowThreshold 1.5 - 6 $NATION locked for 4 years", async function () {
-      const { votingEscrow, passportUtils, owner, otherAccount } =
-        await loadFixture(deploymentFixture);
+      const { votingEscrow, passportUtils, owner } = await loadFixture(
+        deploymentFixture
+      );
 
       const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
