@@ -4,9 +4,8 @@ import { ethers } from "hardhat";
 describe("GitHub", function () {
   it("Deploy contract", async function () {
     const GitHub = await ethers.getContractFactory("GitHub");
-    const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
     const passportUtilsAddress = ethers.constants.AddressZero;
-    const gitHub = await GitHub.deploy(veTokenAddress, passportUtilsAddress);
+    const gitHub = await GitHub.deploy(passportUtilsAddress);
     await gitHub.deployed();
 
     const [owner] = await ethers.getSigners();
@@ -19,9 +18,8 @@ describe("GitHub", function () {
 
   it("updateUsername", async function () {
     const GitHub = await ethers.getContractFactory("GitHub");
-    const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
     const passportUtilsAddress = ethers.constants.AddressZero;
-    const gitHub = await GitHub.deploy(veTokenAddress, passportUtilsAddress);
+    const gitHub = await GitHub.deploy(passportUtilsAddress);
     await gitHub.deployed();
 
     const [owner] = await ethers.getSigners();
