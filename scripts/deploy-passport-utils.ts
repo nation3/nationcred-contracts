@@ -14,13 +14,17 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const NationCred = await ethers.getContractFactory("NationCred");
-  const passportAddress = "0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333";
-  const nationCred = await NationCred.deploy(passportAddress);
+  const PassportUtils = await ethers.getContractFactory("PassportUtils");
+  const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093";
+  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
+  const passportUtils = await PassportUtils.deploy(
+    passportIssuerAddress,
+    votingEscrowAddress
+  );
 
-  await nationCred.deployed();
+  await passportUtils.deployed();
 
-  console.log("NationCred deployed to:", nationCred.address);
+  console.log("PassportUtils deployed to:", passportUtils.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
