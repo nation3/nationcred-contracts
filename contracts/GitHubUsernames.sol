@@ -1,9 +1,10 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import {IPassportUtils} from "./utils/IPassportUtils.sol";
 
 contract GitHubUsernames {
+    uint8[3] public version = [0, 6, 0];
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;
 

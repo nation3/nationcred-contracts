@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "./IPassportUtils.sol";
 import "../passport/IPassportIssuer.sol";
@@ -10,6 +10,7 @@ import "hardhat/console.sol";
 contract PassportUtils is IPassportUtils {
     using SafeERC20 for IERC20;
 
+    uint8[3] public version = [0, 6, 0];
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 
