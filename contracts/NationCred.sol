@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "./INationCred.sol";
 import "@openzeppelin/contracts/interfaces/IERC721.sol";
