@@ -20,10 +20,6 @@ npx hardhat compile
 Run unit tests:
 
 ```
-export REPORT_GAS=true
-```
-
-```
 npx hardhat test
 ```
 
@@ -43,13 +39,7 @@ Check if coverage threshold has been met:
 npx istanbul check-coverage --lines 90
 ```
 
-## Linters
-
-Run ESLint:
-
-```
-npx eslint '**/*.{js,ts}' --fix
-```
+## Linting
 
 Run Solhint:
 
@@ -111,18 +101,20 @@ npx hardhat run scripts/deploy-<contract>.ts --network mainnet
 ```
 
 ```
-npx hardhat verify --network mainnet <address>
+npx hardhat verify --network mainnet <address> <parameters>
 ```
 
 ## Deployments
 
 ### Goerli
 
-- GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
+- utils/PassportUtils.sol: `0xad42FC3fE04add6B4D177188E3B41677f03703a7`
+- GitHubUsernames.sol: `0x1bDa420e57059FB7C97B13DE7F7Dd719371E0291`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 
 ### Sepolia
 
+- utils/PassportUtils.sol: `0x90EC93e8B5948b1F7759692fB3082ACd3abDa3F8`
 - NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
 
 ### Mainnet

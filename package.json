@@ -1,33 +1,24 @@
 {
   "name": "nationcred-contracts",
-  "version": "0.5.0",
+  "version": "0.6.1",
   "description": "NationCred smart contracts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Nation3",
+  "author": "Nation3 DAO",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.2.1",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@openzeppelin/contracts": "^4.9.3",
     "@typechain/ethers-v5": "^10.2.0",
     "@typechain/hardhat": "^6.1.4",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.18",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.61.0",
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.7.2",
     "hardhat": "^2.13.0",
@@ -37,10 +28,6 @@
     "solhint": "^3.3.7",
     "solidity-coverage": "^0.8.2",
     "ts-node": "^10.9.1",
-    "typechain": "^8.1.0",
-    "typescript": "^5.0.3"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.9.3"
+    "typechain": "^8.1.0"
   }
 }
