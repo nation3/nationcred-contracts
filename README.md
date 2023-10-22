@@ -39,13 +39,7 @@ Check if coverage threshold has been met:
 npx istanbul check-coverage --lines 90
 ```
 
-## Linters
-
-Run ESLint:
-
-```
-npx eslint '**/*.{js,ts}' --fix
-```
+## Linting
 
 Run Solhint:
 

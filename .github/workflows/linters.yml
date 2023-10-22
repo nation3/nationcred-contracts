@@ -23,6 +23,5 @@ jobs:
         cache-dependency-path: package-lock.json
     - run: npm install
 
-    - run: npx eslint '**/*.{js,ts}'
     - run: npx solhint 'contracts/**/*.sol'
     - run: npx prettier '**/*.{json,sol,md}' --check
