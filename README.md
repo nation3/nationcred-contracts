@@ -101,7 +101,7 @@ npx hardhat run scripts/deploy-<contract>.ts --network mainnet
 ```
 
 ```
-npx hardhat verify --network mainnet <address>
+npx hardhat verify --network mainnet <address> <parameters>
 ```
 
 ## Deployments
@@ -110,6 +110,7 @@ npx hardhat verify --network mainnet <address>
 
 - GitHub.sol: `0x7a0e37e6e64d4fc59207c163e0176e22a4072503`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
+- utils/PassportUtils.sol: `0xad42FC3fE04add6B4D177188E3B41677f03703a7`
 
 ### Sepolia
 
