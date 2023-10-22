@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { loadFixture } from "ethereum-waffle";
+import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { ethers } from "hardhat";
 
 describe("PassportUtils", function () {

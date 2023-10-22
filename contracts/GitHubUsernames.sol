@@ -5,7 +5,7 @@ import {IPassportUtils} from "./utils/IPassportUtils.sol";
 
 contract GitHubUsernames {
     mapping(address => string) public usernames;
-    IPassportUtils public immutable passportUtils;
+    IPassportUtils public passportUtils;
 
     error PassportExpired(address citizen);
 
