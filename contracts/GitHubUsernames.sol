@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 import {IPassportUtils} from "./utils/IPassportUtils.sol";
 
-contract GitHub {
+contract GitHubUsernames {
     mapping(address => string) public usernames;
     IPassportUtils public immutable passportUtils;
 

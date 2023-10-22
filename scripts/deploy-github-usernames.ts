@@ -14,13 +14,13 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const GitHub = await ethers.getContractFactory("GitHub");
+  const GitHubUsernames = await ethers.getContractFactory("GitHubUsernames");
   const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
-  const github = await GitHub.deploy(veTokenAddress);
+  const githubUsernames = await GitHubUsernames.deploy(veTokenAddress);
 
-  await github.deployed();
+  await githubUsernames.deployed();
 
-  console.log("GitHub deployed to:", github.address);
+  console.log("GitHubUsernames deployed to:", githubUsernames.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
