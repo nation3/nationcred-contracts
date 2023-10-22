@@ -114,6 +114,7 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ### Sepolia
 
+- utils/PassportUtils.sol: `0x90EC93e8B5948b1F7759692fB3082ACd3abDa3F8`
 - NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
 
 ### Mainnet
