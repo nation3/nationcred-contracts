@@ -5,12 +5,13 @@ describe("GitHub", function () {
   it("Deploy contract", async function () {
     const GitHub = await ethers.getContractFactory("GitHub");
     const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
-    const gitHub = await GitHub.deploy(veTokenAddress);
+    const passportUtilsAddress = ethers.constants.AddressZero;
+    const gitHub = await GitHub.deploy(veTokenAddress, passportUtilsAddress);
     await gitHub.deployed();
 
     const [owner] = await ethers.getSigners();
     console.log("owner.address:", owner.address);
-    
+
     const username = await gitHub.usernames(owner.address);
     console.log("username:", username);
     expect(username).to.equal("");
@@ -19,7 +20,8 @@ describe("GitHub", function () {
   it("updateUsername", async function () {
     const GitHub = await ethers.getContractFactory("GitHub");
     const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
-    const gitHub = await GitHub.deploy(veTokenAddress);
+    const passportUtilsAddress = ethers.constants.AddressZero;
+    const gitHub = await GitHub.deploy(veTokenAddress, passportUtilsAddress);
     await gitHub.deployed();
 
     const [owner] = await ethers.getSigners();
