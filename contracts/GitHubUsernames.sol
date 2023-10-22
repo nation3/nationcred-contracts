@@ -7,7 +7,7 @@ contract GitHubUsernames {
     mapping(address => string) public usernames;
     IPassportUtils public immutable passportUtils;
 
-    error PassportExpired();
+    error PassportExpired(address citizen);
 
     event UsernameUpdated(address citizen, string username);
 
@@ -17,7 +17,7 @@ contract GitHubUsernames {
 
     function updateUsername(string calldata username) public {
         if (passportUtils.isExpired(msg.sender)) {
-            revert PassportExpired();
+            revert PassportExpired(msg.sender);
         } else {
             usernames[msg.sender] = username;
             emit UsernameUpdated(msg.sender, username);

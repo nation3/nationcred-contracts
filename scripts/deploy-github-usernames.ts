@@ -15,8 +15,8 @@ async function main() {
 
   // We get the contract to deploy
   const GitHubUsernames = await ethers.getContractFactory("GitHubUsernames");
-  const veTokenAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
-  const githubUsernames = await GitHubUsernames.deploy(veTokenAddress);
+  const passportUtilsAddress = ethers.constants.AddressZero;
+  const githubUsernames = await GitHubUsernames.deploy(passportUtilsAddress);
 
   await githubUsernames.deployed();
 
