@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/interfaces/IERC721.sol";
  * @notice Stores the passport IDs of active Nation3 citizens.
  */
 contract NationCred is INationCred {
-    uint8[3] public version = [0, 6, 0];
+    string public constant VERSION = "0.6.1";
     address public owner;
     IERC721 public passport;
     uint16[] private passportIDs;

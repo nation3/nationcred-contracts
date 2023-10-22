@@ -4,13 +4,10 @@ pragma solidity ^0.8.19;
 import "./IPassportUtils.sol";
 import "../passport/IPassportIssuer.sol";
 import "../governance/IVotingEscrow.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "hardhat/console.sol";
 
 contract PassportUtils is IPassportUtils {
-    using SafeERC20 for IERC20;
-
-    uint8[3] public version = [0, 6, 0];
+    string public constant VERSION = "0.6.1";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 

@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import {IPassportUtils} from "./utils/IPassportUtils.sol";
 
 contract GitHubUsernames {
-    uint8[3] public version = [0, 6, 0];
+    string public constant VERSION = "0.6.1";
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;
 
