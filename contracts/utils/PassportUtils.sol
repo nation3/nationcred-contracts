@@ -53,6 +53,10 @@ contract PassportUtils is IPassportUtils {
         console.log("lockEnd:", lockEnd);
         console.log("votingEscrowThreshold:", votingEscrowThreshold);
 
+        if (lockAmount < votingEscrowThreshold) {
+            return 0;
+        }
+
         uint256 maxLockPeriod = 4 * 365 days;
         console.log("maxLockPeriod:", maxLockPeriod);
         console.log("block.timestamp:", block.timestamp);
