@@ -7,7 +7,7 @@ import "../governance/IVotingEscrow.sol";
 import "hardhat/console.sol";
 
 contract PassportUtils is IPassportUtils {
-    string public constant VERSION = "0.6.1";
+    string public constant VERSION = "0.6.2";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 
