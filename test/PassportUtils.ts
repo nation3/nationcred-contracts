@@ -1,6 +1,8 @@
 import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { ethers } from "hardhat";
+
+const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
 describe("PassportUtils", function () {
   async function deploymentFixture() {
@@ -75,7 +77,6 @@ describe("PassportUtils", function () {
       const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("3");
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
       const lockEnd = new Date(
         new Date().getTime() + 4 * oneYearInMilliseconds
@@ -117,7 +118,6 @@ describe("PassportUtils", function () {
       const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("6");
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
       const lockEnd = new Date(
         new Date().getTime() + 4 * oneYearInMilliseconds
@@ -162,7 +162,6 @@ describe("PassportUtils", function () {
         deploymentFixture
       );
 
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
       console.log("initialLockDate:", initialLockDate);
 
@@ -208,7 +207,6 @@ describe("PassportUtils", function () {
         deploymentFixture
       );
 
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
       console.log("initialLockDate:", initialLockDate);
 
