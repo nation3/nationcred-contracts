@@ -24,6 +24,7 @@ interface IPassportUtils {
      * @param lockAmount The amount of `$NATION` tokens that were locked
      * @param lockEnd The lock expiration date in seconds
      * @param votingEscrowThreshold The vote-escrowed `$NATION` balance when a passport will become revocable
+     * @return Timestamp in seconds, or `0` if the lock amount is below the threshold
      */
     function calculateThresholdTimestamp(
         uint256 lockAmount,

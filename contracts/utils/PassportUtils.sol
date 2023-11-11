@@ -7,7 +7,7 @@ import "../governance/IVotingEscrow.sol";
 import "hardhat/console.sol";
 
 contract PassportUtils is IPassportUtils {
-    string public constant VERSION = "0.6.1";
+    string public constant VERSION = "0.6.2";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 
@@ -52,6 +52,10 @@ contract PassportUtils is IPassportUtils {
         console.log("lockAmount:", lockAmount);
         console.log("lockEnd:", lockEnd);
         console.log("votingEscrowThreshold:", votingEscrowThreshold);
+
+        if (lockAmount < votingEscrowThreshold) {
+            return 0;
+        }
 
         uint256 maxLockPeriod = 4 * 365 days;
         console.log("maxLockPeriod:", maxLockPeriod);
