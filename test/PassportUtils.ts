@@ -1,6 +1,8 @@
 import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { ethers } from "hardhat";
+
+const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
 describe("PassportUtils", function () {
   async function deploymentFixture() {
@@ -75,7 +77,6 @@ describe("PassportUtils", function () {
       const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("3");
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
       const lockEnd = new Date(
         new Date().getTime() + 4 * oneYearInMilliseconds
@@ -117,7 +118,6 @@ describe("PassportUtils", function () {
       const { passportUtils } = await loadFixture(deploymentFixture);
 
       const lockAmount = ethers.utils.parseUnits("6");
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
 
       const lockEnd = new Date(
         new Date().getTime() + 4 * oneYearInMilliseconds
@@ -154,6 +154,32 @@ describe("PassportUtils", function () {
         ethers.BigNumber.from(expectedThresholdDateInSeconds)
       );
     });
+
+    it("votingEscrowThreshold 1.5 - 1 $NATION locked for 4 years", async function () {
+      const { passportUtils } = await loadFixture(deploymentFixture);
+
+      const lockAmount = ethers.utils.parseUnits("1");
+
+      const lockEnd = new Date(
+        new Date().getTime() + 4 * oneYearInMilliseconds
+      );
+      console.log("lockEnd:", lockEnd);
+      const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+      console.log("lockEndInSeconds:", lockEndInSeconds);
+
+      const votingEscrowThreshold = ethers.utils.parseUnits("1.5");
+
+      const calculatedThresholdTimestamp =
+        await passportUtils.calculateThresholdTimestamp(
+          lockAmount,
+          ethers.BigNumber.from(lockEndInSeconds),
+          votingEscrowThreshold
+        );
+      console.log(
+        "calculatedThresholdTimestamp:", calculatedThresholdTimestamp
+      );
+      expect(calculatedThresholdTimestamp).to.equal(0);
+    });
   });
 
   describe("getExpirationTimestamp", function () {
@@ -162,7 +188,6 @@ describe("PassportUtils", function () {
         deploymentFixture
       );
 
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
       console.log("initialLockDate:", initialLockDate);
 
@@ -208,7 +233,6 @@ describe("PassportUtils", function () {
         deploymentFixture
       );
 
-      const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
       const initialLockDate = new Date();
       console.log("initialLockDate:", initialLockDate);
 

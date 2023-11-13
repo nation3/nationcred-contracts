@@ -1,6 +1,6 @@
 {
   "name": "nationcred-contracts",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "NationCred smart contracts",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "solhint": "^3.3.7",
     "solidity-coverage": "^0.8.2",
     "ts-node": "^10.9.1",
-    "typechain": "^8.1.0"
+    "typechain": "^8.3.2"
   }
 }
