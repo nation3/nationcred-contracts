@@ -52,13 +52,7 @@ contract DeveloperSkillLevels {
 
         uint256 ratingInGwei = rating * 1 ether;
 
-        bool isFirstTimeRating = true;
-        if (skillLevelRatings[developer][msg.sender] != 0) {
-            isFirstTimeRating = false;
-        }
-
-        uint256 newSkillLevelAverage;
-        if (isFirstTimeRating) {
+        if (skillLevelRatings[developer][msg.sender] == 0) {
             if (skillLevels[developer] == 0) {
                 skillLevelRatingsCount[developer] = 1;
                 skillLevelRatingsSum[developer] = ratingInGwei;
@@ -73,7 +67,7 @@ contract DeveloperSkillLevels {
                 skillLevelRatingsSum[developer] += ratingInGwei;
             }
         }
-        newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
+        uint256 newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
 
         skillLevels[developer] = newSkillLevelAverage;
         skillLevelRatings[developer][msg.sender] = rating;
