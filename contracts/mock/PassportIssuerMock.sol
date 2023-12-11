@@ -4,7 +4,9 @@ pragma solidity ^0.8.19;
 import "../passport/IPassportIssuer.sol";
 
 contract PassportIssuerMock is IPassportIssuer {
-    function passportStatus(address account) external view virtual returns (uint8) {
+    function passportStatus(
+        address account
+    ) external view virtual returns (uint8) {
         return 1;
     }
 
