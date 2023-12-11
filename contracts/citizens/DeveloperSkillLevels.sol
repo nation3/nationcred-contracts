@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
@@ -23,12 +23,14 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  *     https://nation3.org
  */
 contract DeveloperSkillLevels {
+    string public constant VERSION = "0.6.3";
     mapping(address => uint256) public skillLevels;
     mapping(address => uint8) public skillLevelRatingsCount;
     mapping(address => uint256) public skillLevelRatingsSum;
     mapping(address => mapping(address => uint8)) public skillLevelRatings;
     IPassportUtils public passportUtils;
 
+    error NotPassportOwner(address illegalAlien);
     error PassportExpired(address citizen);
     error RatingValueError(uint8 rating);
 
@@ -43,6 +45,9 @@ contract DeveloperSkillLevels {
      * @dev Only citizens with a valid passport can rate developers.
      */
     function rate(address developer, uint8 rating) public {
+        if (!passportUtils.isOwner(msg.sender)) {
+            revert NotPassportOwner(msg.sender);
+        }
         if (passportUtils.isExpired(msg.sender)) {
             revert PassportExpired(msg.sender);
         }

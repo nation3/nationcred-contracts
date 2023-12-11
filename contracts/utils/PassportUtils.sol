@@ -4,10 +4,9 @@ pragma solidity ^0.8.19;
 import "./IPassportUtils.sol";
 import "../passport/IPassportIssuer.sol";
 import "../governance/IVotingEscrow.sol";
-import "hardhat/console.sol";
 
 contract PassportUtils is IPassportUtils {
-    string public constant VERSION = "0.6.2";
+    string public constant VERSION = "0.6.3";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 
@@ -16,14 +15,26 @@ contract PassportUtils is IPassportUtils {
         votingEscrow = IVotingEscrow(votingEscrowAddress);
     }
 
+    /**
+     * @inheritdoc IPassportUtils
+     */
+    function isOwner(address account) public view returns (bool) {
+        uint8 passportStatus = passportIssuer.passportStatus(account);
+        return passportStatus == 1;
+    }
+
+    /**
+     * @inheritdoc IPassportUtils
+     */
     function isExpired(address citizen) public view returns (bool) {
         uint256 revokeUnderBalance = passportIssuer.revokeUnderBalance();
-        console.log("revokeUnderBalance:", revokeUnderBalance);
         uint256 votingEscrowBalance = votingEscrow.balanceOf(citizen);
-        console.log("votingEscrowBalance:", votingEscrowBalance);
         return votingEscrowBalance < revokeUnderBalance;
     }
 
+    /**
+     * @inheritdoc IPassportUtils
+     */
     function getExpirationTimestamp(
         address citizen
     ) public view returns (uint256) {
@@ -31,11 +42,8 @@ contract PassportUtils is IPassportUtils {
             citizen
         );
         uint256 lockAmount = uint256(int256(lockedBalance.amount));
-        console.log("lockAmount:", lockAmount);
         uint256 lockEnd = lockedBalance.end;
-        console.log("lockEnd:", lockEnd);
         uint256 revokeUnderBalance = passportIssuer.revokeUnderBalance();
-        console.log("revokeUnderBalance:", revokeUnderBalance);
         return
             calculateThresholdTimestamp(
                 lockAmount,
@@ -44,38 +52,25 @@ contract PassportUtils is IPassportUtils {
             );
     }
 
+    /**
+     * @inheritdoc IPassportUtils
+     */
     function calculateThresholdTimestamp(
         uint256 lockAmount,
         uint256 lockEnd,
         uint256 votingEscrowThreshold
     ) public view returns (uint256) {
-        console.log("lockAmount:", lockAmount);
-        console.log("lockEnd:", lockEnd);
-        console.log("votingEscrowThreshold:", votingEscrowThreshold);
-
         if (lockAmount < votingEscrowThreshold) {
             return 0;
         }
 
         uint256 maxLockPeriod = 4 * 365 days;
-        console.log("maxLockPeriod:", maxLockPeriod);
-        console.log("block.timestamp:", block.timestamp);
-        uint256 secondsUntilUnlock = lockEnd - block.timestamp;
-        console.log("secondsUntilUnlock:", secondsUntilUnlock);
 
         uint256 thresholdPercentageOfLocked = (100 ether *
             votingEscrowThreshold) / lockAmount;
-        console.log(
-            "thresholdPercentageOfLocked:",
-            thresholdPercentageOfLocked
-        );
 
         uint256 secondsFromThresholdToUnlock = (maxLockPeriod *
             thresholdPercentageOfLocked) / 100 ether;
-        console.log(
-            "secondsFromThresholdToUnlock:",
-            secondsFromThresholdToUnlock
-        );
 
         return lockEnd - secondsFromThresholdToUnlock;
     }
