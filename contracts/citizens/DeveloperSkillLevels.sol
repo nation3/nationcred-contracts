@@ -2,7 +2,6 @@
 pragma solidity 0.8.19;
 
 import { IPassportUtils } from "../utils/IPassportUtils.sol";
-import "hardhat/console.sol";
 
 /**
  *        ---------::::       
@@ -53,43 +52,28 @@ contract DeveloperSkillLevels {
 
         uint256 ratingInGwei = rating * 1 ether;
 
-        // Check if the citizen has rated this developer previously
         bool isFirstTimeRating = true;
         if (skillLevelRatings[developer][msg.sender] != 0) {
             isFirstTimeRating = false;
         }
-        console.log("isFirstTimeRating:", isFirstTimeRating);
 
-        // Calculate the developer's new skill rating average
         uint256 newSkillLevelAverage;
         if (isFirstTimeRating) {
-            // First time this citizen rates this developer
             if (skillLevels[developer] == 0) {
-                // 1st rating for this developer
                 skillLevelRatingsCount[developer] = 1;
                 skillLevelRatingsSum[developer] = ratingInGwei;
-                newSkillLevelAverage = ratingInGwei;
             } else {
-                // 2nd+ rating for this developer
                 skillLevelRatingsCount[developer] += 1;
                 skillLevelRatingsSum[developer] += ratingInGwei;
-                newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
             }
         } else {
-            // 2nd+ time this citizen rates this developer
             uint256 previousRatingInGwei = skillLevelRatings[developer][msg.sender] * 1 ether;
-            console.log("previousRatingInGwei:", previousRatingInGwei);
             if (previousRatingInGwei != ratingInGwei) {
-                // Replace previous rating with new rating
                 skillLevelRatingsSum[developer] -= previousRatingInGwei;
                 skillLevelRatingsSum[developer] += ratingInGwei;
             }
-            newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
         }
-        console.log("skillLevels[developer]:", skillLevels[developer]);
-        console.log("skillLevelRatingsSum[developer]:", skillLevelRatingsSum[developer]);
-        console.log("skillLevelRatingsCount[developer]:", skillLevelRatingsCount[developer]);
-        console.log("newSkillLevelAverage:", newSkillLevelAverage);
+        newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
 
         skillLevels[developer] = newSkillLevelAverage;
         skillLevelRatings[developer][msg.sender] = rating;
