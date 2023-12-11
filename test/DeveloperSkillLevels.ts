@@ -41,7 +41,7 @@ describe("DeveloperSkillLevels", function () {
     const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
 
     const tx = await developerSkillLevels.rate(owner.address, 3);
-    console.log('tx:', tx);
+    // console.log('tx:', tx);
 
     const skillLevel = await developerSkillLevels.skillLevels(owner.address);
     console.log('skillLevel:', skillLevel);
@@ -76,10 +76,10 @@ describe("DeveloperSkillLevels", function () {
     const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
 
     let tx = await developerSkillLevels.rate(owner.address, 3);
-    console.log('tx:', tx);
+    // console.log('tx:', tx);
 
     tx = await developerSkillLevels.rate(owner.address, 3);
-    console.log('tx:', tx);
+    // console.log('tx:', tx);
 
     const skillLevel = await developerSkillLevels.skillLevels(owner.address);
     console.log('skillLevel:', skillLevel);
@@ -90,10 +90,10 @@ describe("DeveloperSkillLevels", function () {
     const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
 
     let tx = await developerSkillLevels.rate(owner.address, 3);
-    console.log('tx:', tx);
+    // console.log('tx:', tx);
 
     tx = await developerSkillLevels.rate(owner.address, 4);
-    console.log('tx:', tx);
+    // console.log('tx:', tx);
 
     const skillLevel = await developerSkillLevels.skillLevels(owner.address);
     console.log('skillLevel:', skillLevel);
@@ -103,17 +103,17 @@ describe("DeveloperSkillLevels", function () {
   it("rate - two citizens rating - each rating with a different value", async function () {
     const { owner, otherAccount, developerSkillLevels, votingEscrow } = await loadFixture(deploymentFixture);
 
+    let tx = await developerSkillLevels.rate(owner.address, 3);
+    // console.log('tx:', tx);
+    
     // Send veNATION to the other account to enable rating
     await votingEscrow.transfer(otherAccount.address, ethers.utils.parseUnits("50"));
     expect(
         await votingEscrow.balanceOf(otherAccount.address)
     ).to.equal(ethers.utils.parseUnits("50"));
 
-    let tx = await developerSkillLevels.rate(owner.address, 3);
-    console.log('tx:', tx);
-
-    tx = await developerSkillLevels.rate(owner.address, 4);
-    console.log('tx:', tx);
+    tx = await developerSkillLevels.connect(otherAccount).rate(owner.address, 4);
+    // console.log('tx:', tx);
 
     const skillLevel = await developerSkillLevels.skillLevels(owner.address);
     console.log('skillLevel:', skillLevel);
