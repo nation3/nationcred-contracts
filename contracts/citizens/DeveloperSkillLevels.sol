@@ -24,6 +24,7 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  */
 contract DeveloperSkillLevels {
     string public constant VERSION = "0.6.3";
+    address public owner;
     mapping(address => uint256) public skillLevels;
     mapping(address => uint8) public skillLevelRatingsCount;
     mapping(address => uint256) public skillLevelRatingsSum;
@@ -37,6 +38,17 @@ contract DeveloperSkillLevels {
     event Rated(address developer, uint8 rating, address citizen);
 
     constructor(address passportUtils_) {
+        owner = address(msg.sender);
+        passportUtils = IPassportUtils(passportUtils_);
+    }
+
+    function setOwner(address owner_) public {
+        require(msg.sender == owner, "You are not the owner");
+        owner = owner_;
+    }
+
+    function setPassportUtils(address passportUtils_) public {
+        require(msg.sender == owner, "You are not the owner");
         passportUtils = IPassportUtils(passportUtils_);
     }
 
