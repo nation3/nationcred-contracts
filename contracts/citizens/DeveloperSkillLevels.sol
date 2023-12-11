@@ -1,24 +1,24 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity 0.8.19;
 
-import { IPassportUtils } from "../utils/IPassportUtils.sol";
+import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
 /**
- *        ---------::::       
- *     ---------:---::::::    
- *   -----------::---:::::::  
- *  ------------:.:--:::::::: 
+ *        ---------::::
+ *     ---------:---::::::
+ *   -----------::---:::::::
+ *  ------------:.:--::::::::
  * -------------: .:--::::::::
  * -------------:   .:::::::::
  * -------------:.......::::::
  * -----:..    .:-------::::::
  * --------:.. .:-------::::::
  * ----------:..:--------:::::
- *  -----------.:--------:::: 
- *   ----------::--------:::  
- *     -------------------    
- *        -------------       
- * 
+ *  -----------.:--------::::
+ *   ----------::--------:::
+ *     -------------------
+ *        -------------
+ *
  *         Nation3 DAO
  *     https://nation3.org
  */
@@ -46,7 +46,13 @@ contract DeveloperSkillLevels {
         if (passportUtils.isExpired(msg.sender)) {
             revert PassportExpired(msg.sender);
         }
-        if ((rating != 1) && (rating != 2) && (rating != 3) && (rating != 4) && (rating != 5)) {
+        if (
+            (rating != 1) &&
+            (rating != 2) &&
+            (rating != 3) &&
+            (rating != 4) &&
+            (rating != 5)
+        ) {
             revert RatingValueError(rating);
         }
 
@@ -61,13 +67,16 @@ contract DeveloperSkillLevels {
                 skillLevelRatingsSum[developer] += ratingInGwei;
             }
         } else {
-            uint256 previousRatingInGwei = skillLevelRatings[developer][msg.sender] * 1 ether;
+            uint256 previousRatingInGwei = skillLevelRatings[developer][
+                msg.sender
+            ] * 1 ether;
             if (previousRatingInGwei != ratingInGwei) {
                 skillLevelRatingsSum[developer] -= previousRatingInGwei;
                 skillLevelRatingsSum[developer] += ratingInGwei;
             }
         }
-        uint256 newSkillLevelAverage = skillLevelRatingsSum[developer] / skillLevelRatingsCount[developer];
+        uint256 newSkillLevelAverage = skillLevelRatingsSum[developer] /
+            skillLevelRatingsCount[developer];
 
         skillLevels[developer] = newSkillLevelAverage;
         skillLevelRatings[developer][msg.sender] = rating;
