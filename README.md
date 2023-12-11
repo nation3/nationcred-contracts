@@ -108,7 +108,8 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ### Goerli
 
-- utils/PassportUtils.sol: `0xad42FC3fE04add6B4D177188E3B41677f03703a7`
+- citizens/DeveloperSkillLevels.sol: `0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
+- utils/PassportUtils.sol: [`0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b`](https://goerli.etherscan.io/address/0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b#code)
 - GitHubUsernames.sol: `0x1bDa420e57059FB7C97B13DE7F7Dd719371E0291`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 
