@@ -108,10 +108,13 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ### Goerli
 
+https://github.com/nation3/foundations/blob/main/deployments/goerli.json
+
 - citizens/DeveloperSkillLevels.sol: `0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
 - utils/PassportUtils.sol: [`0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b`](https://goerli.etherscan.io/address/0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b#code)
 - GitHubUsernames.sol: `0x1bDa420e57059FB7C97B13DE7F7Dd719371E0291`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
+- NationCred.sol: [`0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f`](https://goerli.etherscan.io/address/0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f)
 
 ### Sepolia
 
@@ -119,6 +122,8 @@ npx hardhat verify --network mainnet <address> <parameters>
 - NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
 
 ### Mainnet
+
+https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
 - Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
