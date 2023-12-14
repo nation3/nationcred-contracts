@@ -28,6 +28,18 @@ describe("PassportUtils", function () {
     return { votingEscrow, passportUtils, owner, otherAccount };
   }
 
+  describe("isOwner", function () {
+    it("should return true if a citizen's passport has not been revoked", async function () {
+      const { passportUtils, owner } = await loadFixture(
+        deploymentFixture
+      );
+
+      expect(await passportUtils.isOwner(owner.address)).to.equal(
+        true
+      );
+    });
+  });
+
   describe("isExpired", function () {
     it("should return true if voting escrow balance is zero", async function () {
       const { passportUtils, otherAccount } = await loadFixture(

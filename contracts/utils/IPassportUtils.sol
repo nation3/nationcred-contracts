@@ -3,6 +3,11 @@ pragma solidity ^0.8.19;
 
 interface IPassportUtils {
     /**
+     * Returns `true` if an account is the owner of a passport.
+     */
+    function isOwner(address account) external view returns (bool);
+
+    /**
      * Returns `true` if a citizen's passport has become revocable.
      *
      * @param citizen The address of an NFT passport's owner
