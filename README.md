@@ -113,6 +113,8 @@ https://github.com/nation3/foundations/blob/main/deployments/goerli.json
 - utils/PassportUtils.sol: [`0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b`](https://goerli.etherscan.io/address/0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b#code)
 - citizens/DeveloperSkillLevels.sol: `0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
 - citizens/OperatorSkillLevels.sol: [`0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7`](https://goerli.etherscan.io/address/0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7#code)
+- citizens/MarketeerSkillLevels.sol: [`0xdf691B0948AdaA27F44B390055E162B1466d6cc8`](https://goerli.etherscan.io/address/0xdf691B0948AdaA27F44B390055E162B1466d6cc8#code)
+
 - GitHubUsernames.sol: `0x1bDa420e57059FB7C97B13DE7F7Dd719371E0291`
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 - NationCred.sol: [`0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f`](https://goerli.etherscan.io/address/0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f)
