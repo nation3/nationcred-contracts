@@ -15,8 +15,8 @@ async function main() {
 
   // We get the contract to deploy
   const PassportUtils = await ethers.getContractFactory("PassportUtils");
-  const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093";
-  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d";
+  const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093"; // Goerli
+  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"; // Goerli
   const passportUtils = await PassportUtils.deploy(
     passportIssuerAddress,
     votingEscrowAddress
