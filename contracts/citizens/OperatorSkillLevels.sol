@@ -22,7 +22,7 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  *         Nation3 DAO
  *     https://nation3.org
  */
-contract DeveloperSkillLevels {
+contract OperatorSkillLevels {
     string public constant VERSION = "0.6.4";
     address public owner;
     mapping(address => uint256) public skillLevelAverages;
@@ -35,7 +35,7 @@ contract DeveloperSkillLevels {
     error PassportExpired(address citizen);
     error RatingValueError(uint8 rating);
 
-    event Rated(address developer, uint8 rating, address citizen);
+    event Rated(address operator, uint8 rating, address citizen);
 
     constructor(address passportUtils_) {
         owner = address(msg.sender);
@@ -53,10 +53,10 @@ contract DeveloperSkillLevels {
     }
 
     /**
-     * @notice Rate a developer's skills, on a scale from 1 to 5.
-     * @dev Only citizens with a valid passport can rate developers.
+     * @notice Rate an operator's skills, on a scale from 1 to 5.
+     * @dev Only citizens with a valid passport can rate operators.
      */
-    function rate(address developer, uint8 rating) public {
+    function rate(address operator, uint8 rating) public {
         if (!passportUtils.isOwner(msg.sender)) {
             revert NotPassportOwner(msg.sender);
         }
@@ -75,28 +75,28 @@ contract DeveloperSkillLevels {
 
         uint256 ratingInGwei = rating * 1 ether;
 
-        if (skillLevelRatings[developer][msg.sender] == 0) {
-            if (skillLevelAverages[developer] == 0) {
-                skillLevelRatingsCount[developer] = 1;
-                skillLevelRatingsSum[developer] = ratingInGwei;
+        if (skillLevelRatings[operator][msg.sender] == 0) {
+            if (skillLevelAverages[operator] == 0) {
+                skillLevelRatingsCount[operator] = 1;
+                skillLevelRatingsSum[operator] = ratingInGwei;
             } else {
-                skillLevelRatingsCount[developer] += 1;
-                skillLevelRatingsSum[developer] += ratingInGwei;
+                skillLevelRatingsCount[operator] += 1;
+                skillLevelRatingsSum[operator] += ratingInGwei;
             }
         } else {
-            uint256 previousRatingInGwei = skillLevelRatings[developer][
+            uint256 previousRatingInGwei = skillLevelRatings[operator][
                 msg.sender
             ] * 1 ether;
             if (previousRatingInGwei != ratingInGwei) {
-                skillLevelRatingsSum[developer] -= previousRatingInGwei;
-                skillLevelRatingsSum[developer] += ratingInGwei;
+                skillLevelRatingsSum[operator] -= previousRatingInGwei;
+                skillLevelRatingsSum[operator] += ratingInGwei;
             }
         }
-        uint256 newSkillLevelAverage = skillLevelRatingsSum[developer] /
-            skillLevelRatingsCount[developer];
+        uint256 newSkillLevelAverage = skillLevelRatingsSum[operator] /
+            skillLevelRatingsCount[operator];
 
-        skillLevelAverages[developer] = newSkillLevelAverage;
-        skillLevelRatings[developer][msg.sender] = rating;
-        emit Rated(developer, rating, msg.sender);
+        skillLevelAverages[operator] = newSkillLevelAverage;
+        skillLevelRatings[operator][msg.sender] = rating;
+        emit Rated(operator, rating, msg.sender);
     }
 }

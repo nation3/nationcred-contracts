@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
-describe("DeveloperSkillLevels", function () {
+describe("OperatorSkillLevels", function () {
   async function deploymentFixture() {
     console.log("deploymentFixture");
 
@@ -22,88 +22,88 @@ describe("DeveloperSkillLevels", function () {
       votingEscrow.address
     );
 
-    const DeveloperSkillLevels = await ethers.getContractFactory("DeveloperSkillLevels");
-    const developerSkillLevels = await DeveloperSkillLevels.deploy(passportUtils.address);
-    await developerSkillLevels.deployed();
+    const OperatorSkillLevels = await ethers.getContractFactory("OperatorSkillLevels");
+    const operatorSkillLevels = await OperatorSkillLevels.deploy(passportUtils.address);
+    await operatorSkillLevels.deployed();
 
-    return { owner, otherAccount, developerSkillLevels, votingEscrow };
+    return { owner, otherAccount, operatorSkillLevels, votingEscrow };
   }
 
   it("no skill level rating for citizen", async function () {
-    const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
 
   it("rate - citizen with valid passport", async function () {
-    const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
-    const tx = await developerSkillLevels.rate(owner.address, 3);
+    const tx = await operatorSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
   });
 
   it("rate - citizen with expired passport", async function () {
-    const { otherAccount, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { otherAccount, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
     await expect(
-        developerSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
-    ).to.be.revertedWithCustomError(developerSkillLevels, "PassportExpired");
+        operatorSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
+    ).to.be.revertedWithCustomError(operatorSkillLevels, "PassportExpired");
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(otherAccount.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(otherAccount.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
 
   it("rate - rating value error", async function () {
-    const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
     await expect(
-        developerSkillLevels.rate(owner.address, 6)
-    ).to.be.revertedWithCustomError(developerSkillLevels, "RatingValueError");
+        operatorSkillLevels.rate(owner.address, 6)
+    ).to.be.revertedWithCustomError(operatorSkillLevels, "RatingValueError");
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
 
   it("rate - self-rating - two ratings with the same value", async function () {
-    const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
-    let tx = await developerSkillLevels.rate(owner.address, 3);
+    let tx = await operatorSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    tx = await developerSkillLevels.rate(owner.address, 3);
+    tx = await operatorSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
   });
 
   it("rate - self-rating - two ratings with different values", async function () {
-    const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, operatorSkillLevels } = await loadFixture(deploymentFixture);
 
-    let tx = await developerSkillLevels.rate(owner.address, 3);
+    let tx = await operatorSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    tx = await developerSkillLevels.rate(owner.address, 4);
+    tx = await operatorSkillLevels.rate(owner.address, 4);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('4'));
   });
 
   it("rate - two citizens rating - each rating with a different value", async function () {
-    const { owner, otherAccount, developerSkillLevels, votingEscrow } = await loadFixture(deploymentFixture);
+    const { owner, otherAccount, operatorSkillLevels, votingEscrow } = await loadFixture(deploymentFixture);
 
-    let tx = await developerSkillLevels.rate(owner.address, 3);
+    let tx = await operatorSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
     
     // Send veNATION to the other account to enable rating
@@ -112,10 +112,10 @@ describe("DeveloperSkillLevels", function () {
         await votingEscrow.balanceOf(otherAccount.address)
     ).to.equal(ethers.utils.parseUnits("50"));
 
-    tx = await developerSkillLevels.connect(otherAccount).rate(owner.address, 4);
+    tx = await operatorSkillLevels.connect(otherAccount).rate(owner.address, 4);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
+    const skillLevel = await operatorSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3.5'));
   });
