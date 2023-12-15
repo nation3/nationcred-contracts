@@ -25,9 +25,9 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
 contract DeveloperSkillLevels {
     string public constant VERSION = "0.6.3";
     address public owner;
-    mapping(address => uint256) public skillLevels;
+    mapping(address => uint256) public skillLevelAverages;
     mapping(address => uint8) public skillLevelRatingsCount;
-    mapping(address => uint256) public skillLevelRatingsSum;
+    mapping(address => uint256) private skillLevelRatingsSum;
     mapping(address => mapping(address => uint8)) public skillLevelRatings;
     IPassportUtils public passportUtils;
 
@@ -76,7 +76,7 @@ contract DeveloperSkillLevels {
         uint256 ratingInGwei = rating * 1 ether;
 
         if (skillLevelRatings[developer][msg.sender] == 0) {
-            if (skillLevels[developer] == 0) {
+            if (skillLevelAverages[developer] == 0) {
                 skillLevelRatingsCount[developer] = 1;
                 skillLevelRatingsSum[developer] = ratingInGwei;
             } else {
@@ -95,7 +95,7 @@ contract DeveloperSkillLevels {
         uint256 newSkillLevelAverage = skillLevelRatingsSum[developer] /
             skillLevelRatingsCount[developer];
 
-        skillLevels[developer] = newSkillLevelAverage;
+        skillLevelAverages[developer] = newSkillLevelAverage;
         skillLevelRatings[developer][msg.sender] = rating;
         emit Rated(developer, rating, msg.sender);
     }

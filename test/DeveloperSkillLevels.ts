@@ -32,7 +32,7 @@ describe("DeveloperSkillLevels", function () {
   it("no skill level rating for citizen", async function () {
     const { owner, developerSkillLevels } = await loadFixture(deploymentFixture);
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
@@ -43,7 +43,7 @@ describe("DeveloperSkillLevels", function () {
     const tx = await developerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
   });
@@ -55,7 +55,7 @@ describe("DeveloperSkillLevels", function () {
         developerSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
     ).to.be.revertedWithCustomError(developerSkillLevels, "PassportExpired");
 
-    const skillLevel = await developerSkillLevels.skillLevels(otherAccount.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(otherAccount.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
@@ -67,7 +67,7 @@ describe("DeveloperSkillLevels", function () {
         developerSkillLevels.rate(owner.address, 6)
     ).to.be.revertedWithCustomError(developerSkillLevels, "RatingValueError");
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
   });
@@ -81,7 +81,7 @@ describe("DeveloperSkillLevels", function () {
     tx = await developerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
   });
@@ -95,7 +95,7 @@ describe("DeveloperSkillLevels", function () {
     tx = await developerSkillLevels.rate(owner.address, 4);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('4'));
   });
@@ -115,7 +115,7 @@ describe("DeveloperSkillLevels", function () {
     tx = await developerSkillLevels.connect(otherAccount).rate(owner.address, 4);
     // console.log('tx:', tx);
 
-    const skillLevel = await developerSkillLevels.skillLevels(owner.address);
+    const skillLevel = await developerSkillLevels.skillLevelAverages(owner.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(ethers.utils.parseUnits('3.5'));
   });
