@@ -61,7 +61,17 @@ describe("DeveloperSkillLevels", function () {
     expect(skillLevel).to.equal(0);
   });
 
-  // rate - not passport owner
+  it("rate - not passport owner", async function () {
+    const { otherAccount, developerSkillLevels } = await loadFixture(deploymentFixture);
+
+    await expect(
+        developerSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
+    ).to.be.revertedWithCustomError(developerSkillLevels, "NotPassportOwner");
+
+    const skillLevel = await developerSkillLevels.skillLevelAverages(otherAccount.address);
+    console.log('skillLevel:', skillLevel);
+    expect(skillLevel).to.equal(0);
+  });
 
   it("rate - citizen with expired passport", async function () {
     const { otherAccount, developerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);

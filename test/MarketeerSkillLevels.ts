@@ -53,6 +53,18 @@ describe("MarketeerSkillLevels", function () {
     expect(contractPassportUtils).to.equal(ethers.constants.AddressZero);
   });
 
+  it("rate - not passport owner", async function () {
+    const { otherAccount, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+
+    await expect(
+        marketeerSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
+    ).to.be.revertedWithCustomError(marketeerSkillLevels, "NotPassportOwner");
+
+    const skillLevel = await marketeerSkillLevels.skillLevelAverages(otherAccount.address);
+    console.log('skillLevel:', skillLevel);
+    expect(skillLevel).to.equal(0);
+  });
+
   it("no skill level rating for citizen", async function () {
     const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
 
