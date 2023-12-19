@@ -25,14 +25,17 @@ describe("PassportUtils", function () {
     );
     // await passportUtils.deployed();
 
-    return { votingEscrow, passportUtils, owner, otherAccount };
+    return { votingEscrow, passportUtils, owner, otherAccount, passportIssuer };
   }
 
   describe("isOwner", function () {
     it("should return true if a citizen's passport has not been revoked", async function () {
-      const { passportUtils, owner } = await loadFixture(
+      const { passportUtils, owner, passportIssuer } = await loadFixture(
         deploymentFixture
       );
+
+      // Claim passport
+      await passportIssuer.connect(owner).claim();
 
       expect(await passportUtils.isOwner(owner.address)).to.equal(
         true
