@@ -26,8 +26,32 @@ describe("MarketeerSkillLevels", function () {
     const marketeerSkillLevels = await MarketeerSkillLevels.deploy(passportUtils.address);
     await marketeerSkillLevels.deployed();
 
-    return { owner, otherAccount, marketeerSkillLevels, votingEscrow };
+    return { owner, otherAccount, marketeerSkillLevels, votingEscrow, passportUtils };
   }
+
+  it("setOwner", async function() {
+    const { owner, otherAccount, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+
+    let contractOwner = await marketeerSkillLevels.owner();
+    expect(contractOwner).to.equal(owner.address);
+
+    await marketeerSkillLevels.setOwner(otherAccount.address);
+
+    contractOwner = await marketeerSkillLevels.owner();
+    expect(contractOwner).to.equal(otherAccount.address);
+  });
+
+  it("setPassportUtils", async function() {
+    const { marketeerSkillLevels, passportUtils } = await loadFixture(deploymentFixture);
+
+    let contractPassportUtils = await marketeerSkillLevels.passportUtils();
+    expect(contractPassportUtils).to.equal(passportUtils.address);
+
+    await marketeerSkillLevels.setPassportUtils(ethers.constants.AddressZero);
+
+    contractPassportUtils = await marketeerSkillLevels.passportUtils();
+    expect(contractPassportUtils).to.equal(ethers.constants.AddressZero);
+  });
 
   it("no skill level rating for citizen", async function () {
     const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
