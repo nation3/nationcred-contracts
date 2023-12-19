@@ -61,17 +61,6 @@ describe("MarketeerSkillLevels", function () {
     expect(skillLevel).to.equal(0);
   });
 
-  it("rate - citizen with valid passport", async function () {
-    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
-
-    const tx = await marketeerSkillLevels.rate(owner.address, 3);
-    // console.log('tx:', tx);
-
-    const skillLevel = await marketeerSkillLevels.skillLevelAverages(owner.address);
-    console.log('skillLevel:', skillLevel);
-    expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
-  });
-
   it("rate - citizen with expired passport", async function () {
     const { otherAccount, marketeerSkillLevels } = await loadFixture(deploymentFixture);
 
@@ -82,6 +71,17 @@ describe("MarketeerSkillLevels", function () {
     const skillLevel = await marketeerSkillLevels.skillLevelAverages(otherAccount.address);
     console.log('skillLevel:', skillLevel);
     expect(skillLevel).to.equal(0);
+  });
+  
+  it("rate - citizen with valid passport", async function () {
+    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+
+    const tx = await marketeerSkillLevels.rate(owner.address, 3);
+    // console.log('tx:', tx);
+
+    const skillLevel = await marketeerSkillLevels.skillLevelAverages(owner.address);
+    console.log('skillLevel:', skillLevel);
+    expect(skillLevel).to.equal(ethers.utils.parseUnits('3'));
   });
 
   it("rate - rating value error", async function () {
