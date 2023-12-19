@@ -26,7 +26,7 @@ describe("MarketeerSkillLevels", function () {
     const marketeerSkillLevels = await MarketeerSkillLevels.deploy(passportUtils.address);
     await marketeerSkillLevels.deployed();
 
-    return { owner, otherAccount, marketeerSkillLevels, votingEscrow, passportUtils };
+    return { owner, otherAccount, marketeerSkillLevels, votingEscrow, passportUtils, passportIssuer };
   }
 
   it("setOwner", async function() {
@@ -62,7 +62,10 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - citizen with expired passport", async function () {
-    const { otherAccount, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+    const { otherAccount, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(otherAccount).claim();
 
     await expect(
         marketeerSkillLevels.connect(otherAccount).rate(otherAccount.address, 3)
@@ -74,7 +77,10 @@ describe("MarketeerSkillLevels", function () {
   });
   
   it("rate - citizen with valid passport", async function () {
-    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(owner).claim();
 
     const tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -85,7 +91,10 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - rating value error", async function () {
-    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(owner).claim();
 
     await expect(
         marketeerSkillLevels.rate(owner.address, 6)
@@ -97,7 +106,10 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - self-rating - two ratings with the same value", async function () {
-    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(owner).claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -111,7 +123,10 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - self-rating - two ratings with different values", async function () {
-    const { owner, marketeerSkillLevels } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(owner).claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -125,7 +140,10 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - two citizens rating - each rating with a different value", async function () {
-    const { owner, otherAccount, marketeerSkillLevels, votingEscrow } = await loadFixture(deploymentFixture);
+    const { owner, otherAccount, marketeerSkillLevels, votingEscrow, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.connect(owner).claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -135,6 +153,9 @@ describe("MarketeerSkillLevels", function () {
     expect(
         await votingEscrow.balanceOf(otherAccount.address)
     ).to.equal(ethers.utils.parseUnits("50"));
+
+    // Claim passport
+    await passportIssuer.connect(otherAccount).claim();
 
     tx = await marketeerSkillLevels.connect(otherAccount).rate(owner.address, 4);
     // console.log('tx:', tx);
