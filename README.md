@@ -128,7 +128,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - `citizens/DeveloperSkillLevels.sol`: [`0xc58277CE9A52c40640dBDc2038d0FA187dA00E12`](https://sepolia.etherscan.io/address/0xc58277CE9A52c40640dBDc2038d0FA187dA00E12)
 - NationCred.sol: `0x...`
 
-#### Ethereum Attestation Service
+#### Ethereum Attestation Service (EAS)
 
 EAS schema for `DeveloperSkillLevels.sol`, `OperatorSkillLevels.sol`, `MarketeerSkillLevels.sol`:
 https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
