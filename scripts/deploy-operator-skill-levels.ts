@@ -15,7 +15,8 @@ async function main() {
 
   // We get the contract to deploy
   const OperatorSkillLevels = await ethers.getContractFactory("OperatorSkillLevels");
-  const passportUtilsAddress = "0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b"; // Goerli
+  // const passportUtilsAddress = "0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b"; // Goerli
+  const passportUtilsAddress = "0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90"; // Sepolia
   // const passportUtilsAddress = "0x..."; // Mainnet
   const operatorSkillLevels = await OperatorSkillLevels.deploy(passportUtilsAddress);
 
