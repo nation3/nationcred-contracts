@@ -4,7 +4,8 @@ pragma solidity ^0.8.19;
 import {IPassportUtils} from "./utils/IPassportUtils.sol";
 
 contract GitHubUsernames {
-    string public constant VERSION = "0.6.1";
+    string public constant VERSION = "0.6.4";
+    address public owner;
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;
 
@@ -13,6 +14,17 @@ contract GitHubUsernames {
     event UsernameUpdated(address citizen, string username);
 
     constructor(address passportUtils_) {
+        owner = address(msg.sender);
+        passportUtils = IPassportUtils(passportUtils_);
+    }
+
+    function setOwner(address owner_) public {
+        require(msg.sender == owner, "You are not the owner");
+        owner = owner_;
+    }
+
+    function setPassportUtils(address passportUtils_) public {
+        require(msg.sender == owner, "You are not the owner");
         passportUtils = IPassportUtils(passportUtils_);
     }
 

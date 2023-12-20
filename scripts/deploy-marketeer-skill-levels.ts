@@ -14,17 +14,14 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const PassportUtils = await ethers.getContractFactory("PassportUtils");
-  const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093"; // Goerli
-  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"; // Goerli
-  const passportUtils = await PassportUtils.deploy(
-    passportIssuerAddress,
-    votingEscrowAddress
-  );
+  const MarketeerSkillLevels = await ethers.getContractFactory("MarketeerSkillLevels");
+  const passportUtilsAddress = "0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b"; // Goerli
+  // const passportUtilsAddress = "0x..."; // Mainnet
+  const marketeerSkillLevels = await MarketeerSkillLevels.deploy(passportUtilsAddress);
 
-  await passportUtils.deployed();
+  await marketeerSkillLevels.deployed();
 
-  console.log("PassportUtils deployed to:", passportUtils.address);
+  console.log("MarketeerSkillLevels deployed to:", marketeerSkillLevels.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
