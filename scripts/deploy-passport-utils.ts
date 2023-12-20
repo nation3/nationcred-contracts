@@ -14,12 +14,17 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const PassportUtils = await ethers.getContractFactory("PassportUtils");
+  const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093"; // Goerli
+  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"; // Goerli
+  const passportUtils = await PassportUtils.deploy(
+    passportIssuerAddress,
+    votingEscrowAddress
+  );
 
-  await greeter.deployed();
+  await passportUtils.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("PassportUtils deployed to:", passportUtils.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
