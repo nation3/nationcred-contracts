@@ -127,6 +127,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
   - > `⚠️ Not yet functional`
 - `citizens/DeveloperSkillLevels.sol`: [`0xcD441F74016bB50ff25959805F6466AdB49950D2`](https://sepolia.etherscan.io/address/0xcD441F74016bB50ff25959805F6466AdB49950D2)
 - `citizens/OperatorSkillLevels.sol`: [`0xb2731b1DB731Bc653ef3286264373BF1306B3e4B`](https://sepolia.etherscan.io/address/0xb2731b1DB731Bc653ef3286264373BF1306B3e4B)
+- `citizens/MarketeerSkillLevels.sol`: [`0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60`](https://sepolia.etherscan.io/address/0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60)
 - NationCred.sol: `0x...`
 
 #### Ethereum Attestation Service (EAS)

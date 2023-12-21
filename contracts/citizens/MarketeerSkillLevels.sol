@@ -1,7 +1,9 @@
-//SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.19;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
+import {IEAS, AttestationRequest, AttestationRequestData} from "@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol";
+import {NO_EXPIRATION_TIME, EMPTY_UID} from "@ethereum-attestation-service/eas-contracts/contracts/Common.sol";
 
 /**
  *        ---------::::
@@ -30,6 +32,8 @@ contract MarketeerSkillLevels {
     mapping(address => uint256) private skillLevelRatingsSum;
     mapping(address => mapping(address => uint8)) public skillLevelRatings;
     IPassportUtils public passportUtils;
+    IEAS private immutable eas;
+    bytes32 private immutable easSchemaUID;
 
     error NotPassportOwner(address illegalAlien);
     error PassportExpired(address citizen);
@@ -37,9 +41,11 @@ contract MarketeerSkillLevels {
 
     event Rated(address marketeer, uint8 rating, address citizen);
 
-    constructor(address passportUtils_) {
+    constructor(address passportUtils_, address eas_, bytes32 easSchemaUID_) {
         owner = address(msg.sender);
         passportUtils = IPassportUtils(passportUtils_);
+        eas = IEAS(eas_);
+        easSchemaUID = easSchemaUID_;
     }
 
     function setOwner(address owner_) public {
@@ -93,5 +99,19 @@ contract MarketeerSkillLevels {
         skillLevelAverages[marketeer] = newSkillLevelAverage;
         skillLevelRatings[marketeer][msg.sender] = rating;
         emit Rated(marketeer, rating, msg.sender);
+
+        eas.attest(
+            AttestationRequest({
+                schema: easSchemaUID,
+                data: AttestationRequestData({
+                    recipient: marketeer,
+                    expirationTime: NO_EXPIRATION_TIME,
+                    revocable: false,
+                    refUID: EMPTY_UID,
+                    data: abi.encode("Marketeer", rating),
+                    value: 0
+                })
+            })
+        );
     }
 }
