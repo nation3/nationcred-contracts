@@ -22,8 +22,17 @@ describe("OperatorSkillLevels", function () {
       votingEscrow.address
     );
 
+    const EAS = await ethers.getContractFactory("EASMock");
+    const eas = await EAS.deploy();
+
+    const easSchemaUID = "0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b"; // Sepolia - https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
+
     const OperatorSkillLevels = await ethers.getContractFactory("OperatorSkillLevels");
-    const operatorSkillLevels = await OperatorSkillLevels.deploy(passportUtils.address);
+    const operatorSkillLevels = await OperatorSkillLevels.deploy(
+      passportUtils.address,
+      eas.address,
+      easSchemaUID
+    );
     await operatorSkillLevels.deployed();
 
     return { owner, otherAccount, operatorSkillLevels, votingEscrow, passportUtils, passportIssuer };

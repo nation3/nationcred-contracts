@@ -126,6 +126,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - `utils/PassportUtils.sol`: [`0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90`](https://sepolia.etherscan.io/address/0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90)
   - > `⚠️ Not yet functional`
 - `citizens/DeveloperSkillLevels.sol`: [`0xcD441F74016bB50ff25959805F6466AdB49950D2`](https://sepolia.etherscan.io/address/0xcD441F74016bB50ff25959805F6466AdB49950D2)
+- `citizens/OperatorSkillLevels.sol`: [`0xb2731b1DB731Bc653ef3286264373BF1306B3e4B`](https://sepolia.etherscan.io/address/0xb2731b1DB731Bc653ef3286264373BF1306B3e4B)
 - NationCred.sol: `0x...`
 
 #### Ethereum Attestation Service (EAS)
