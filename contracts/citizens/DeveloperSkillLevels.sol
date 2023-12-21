@@ -113,7 +113,7 @@ contract DeveloperSkillLevels {
                     expirationTime: NO_EXPIRATION_TIME,
                     revocable: false,
                     refUID: EMPTY_UID,
-                    data: abi.encode(0), // TO DO
+                    data: abi.encode("Developer", rating),
                     value: 0
                 })
             })
