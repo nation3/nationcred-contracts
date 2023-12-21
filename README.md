@@ -106,12 +106,12 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Goerli
+### Goerli (Version `0.6.3`)
 
 https://github.com/nation3/foundations/blob/main/deployments/goerli.json
 
 - utils/PassportUtils.sol: [`0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b`](https://goerli.etherscan.io/address/0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b#code)
-- citizens/DeveloperSkillLevels.sol: `0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
+- citizens/DeveloperSkillLevels.sol: [`0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
 - citizens/OperatorSkillLevels.sol: [`0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7`](https://goerli.etherscan.io/address/0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7#code)
 - citizens/MarketeerSkillLevels.sol: [`0xdf691B0948AdaA27F44B390055E162B1466d6cc8`](https://goerli.etherscan.io/address/0xdf691B0948AdaA27F44B390055E162B1466d6cc8#code)
 
@@ -119,10 +119,21 @@ https://github.com/nation3/foundations/blob/main/deployments/goerli.json
 - Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
 - NationCred.sol: [`0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f`](https://goerli.etherscan.io/address/0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f)
 
-### Sepolia
+### Sepolia (Version `0.6.4`)
 
-- utils/PassportUtils.sol: `0x90EC93e8B5948b1F7759692fB3082ACd3abDa3F8`
-- NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
+https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
+
+- `utils/PassportUtils.sol`: [`0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90`](https://sepolia.etherscan.io/address/0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90)
+  - > `⚠️ Not yet functional`
+- `citizens/DeveloperSkillLevels.sol`: [`0xcD441F74016bB50ff25959805F6466AdB49950D2`](https://sepolia.etherscan.io/address/0xcD441F74016bB50ff25959805F6466AdB49950D2)
+- `citizens/OperatorSkillLevels.sol`: [`0xb2731b1DB731Bc653ef3286264373BF1306B3e4B`](https://sepolia.etherscan.io/address/0xb2731b1DB731Bc653ef3286264373BF1306B3e4B)
+- `citizens/MarketeerSkillLevels.sol`: [`0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60`](https://sepolia.etherscan.io/address/0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60)
+- NationCred.sol: `0x...`
+
+#### Ethereum Attestation Service (EAS)
+
+EAS schema for `DeveloperSkillLevels.sol`, `OperatorSkillLevels.sol`, `MarketeerSkillLevels.sol`:
+https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
 
 ### Mainnet
 
