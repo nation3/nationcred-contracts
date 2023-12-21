@@ -76,13 +76,8 @@ contract MarketeerSkillLevels {
         uint256 ratingInGwei = rating * 1 ether;
 
         if (skillLevelRatings[marketeer][msg.sender] == 0) {
-            if (skillLevelAverages[marketeer] == 0) {
-                skillLevelRatingsCount[marketeer] = 1;
-                skillLevelRatingsSum[marketeer] = ratingInGwei;
-            } else {
-                skillLevelRatingsCount[marketeer] += 1;
-                skillLevelRatingsSum[marketeer] += ratingInGwei;
-            }
+            skillLevelRatingsCount[marketeer] += 1;
+            skillLevelRatingsSum[marketeer] += ratingInGwei;
         } else {
             uint256 previousRatingInGwei = skillLevelRatings[marketeer][
                 msg.sender

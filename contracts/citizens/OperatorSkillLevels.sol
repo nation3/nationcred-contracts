@@ -76,13 +76,8 @@ contract OperatorSkillLevels {
         uint256 ratingInGwei = rating * 1 ether;
 
         if (skillLevelRatings[operator][msg.sender] == 0) {
-            if (skillLevelAverages[operator] == 0) {
-                skillLevelRatingsCount[operator] = 1;
-                skillLevelRatingsSum[operator] = ratingInGwei;
-            } else {
-                skillLevelRatingsCount[operator] += 1;
-                skillLevelRatingsSum[operator] += ratingInGwei;
-            }
+            skillLevelRatingsCount[operator] += 1;
+            skillLevelRatingsSum[operator] += ratingInGwei;
         } else {
             uint256 previousRatingInGwei = skillLevelRatings[operator][
                 msg.sender
