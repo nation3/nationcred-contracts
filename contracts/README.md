@@ -4,7 +4,9 @@ A library for interacting with Nation3's NationCred smart contracts.
 
 ## Installation
 
-`npm install @nation3/nationcred-contracts`
+```
+npm install @nation3/nationcred-contracts
+```
 
 ## Usage
 

@@ -146,7 +146,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 ## npm
 
-https://docs.npmjs.com/creating-and-publishing-scoped-public-packages
+https://www.npmjs.com/package/@nation3/nationcred-contracts
 
 ```
 cd contracts
