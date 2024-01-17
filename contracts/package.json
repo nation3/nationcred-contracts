@@ -1,0 +1,27 @@
+{
+  "name": "@nation3/nationcred-contracts",
+  "version": "0.6.4",
+  "description": "NationCred smart contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nation3/nationcred-contracts.git"
+  },
+  "keywords": [
+    "nation3",
+    "dao",
+    "nationcred",
+    "sourcecred",
+    "solidity",
+    "ethereum"
+  ],
+  "author": "Nation3 DAO",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nation3/nationcred-contracts/issues"
+  },
+  "homepage": "https://github.com/nation3/nationcred-contracts#readme"
+}
