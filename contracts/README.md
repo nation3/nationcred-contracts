@@ -13,13 +13,13 @@ npm install @nation3/nationcred-contracts
 ```solidity
 pragma solidity ^0.8.19;
 
-import {IPassportUtils} from "@nation3/nationcred-contracts/utils/IPassportUtils.sol";
+import { IPassportUtils } from "@nation3/nationcred-contracts/utils/IPassportUtils.sol";
 
 contract MyContract {
-    IPassportUtils public passportUtils;
-    
-    constructor(address passportUtils_) {
-        passportUtils = IPassportUtils(passportUtils_);
-    }
+  IPassportUtils public passportUtils;
+
+  constructor(address passportUtils_) {
+    passportUtils = IPassportUtils(passportUtils_);
+  }
 }
 ```
