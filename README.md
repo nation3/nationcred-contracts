@@ -143,3 +143,15 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 - Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
 - Discourse.sol: `0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`
 - NationCred.sol: `0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`
+
+## npm
+
+https://www.npmjs.com/package/@nation3/nationcred-contracts
+
+```
+cd contracts
+npm adduser
+npm publish --access public
+```
+
+After publishing, bump the version in `package.json` and the `VERSION` constant in each smart contract.
