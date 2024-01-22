@@ -16,7 +16,7 @@ async function main() {
   // We get the contract to deploy
   const GitHubUsernames = await ethers.getContractFactory("GitHubUsernames");
   // const passportUtilsAddress = "0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b"; // Goerli
-  const passportUtilsAddress = "0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90"; // Sepolia
+  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
   // const passportUtilsAddress = "0x..."; // Mainnet
   const githubUsernames = await GitHubUsernames.deploy(passportUtilsAddress);
 
