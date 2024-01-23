@@ -1,32 +1,36 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
+import { ethers, run } from "hardhat";
+
+async function deployContract(name: string, args: Array<any>): Promise<string> {
+  const contractFactory = await ethers.getContractFactory(name);
+
+  const contract = await contractFactory.deploy(...args);
+  await contract.deployed();
+  return contract.address;
+}
+
+async function verifyContract(contractPath: string, contractAddress: string, args: Array<any>) {
+  await run("verify:verify", {
+    contract: contractPath,
+    address: contractAddress,
+    constructorArguments: args,
+  });
+}
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const contractName = "PassportUtils";
+  const contractPath = "contracts/utils/PassportUtils.sol:PassportUtils"
 
-  // We get the contract to deploy
-  const PassportUtils = await ethers.getContractFactory("PassportUtils");
-  // const passportIssuerAddress = "0x8c16926819AB30B8b29A8E23F5C230d164337093"; // Goerli
+  // Constructor Args
   const passportIssuerAddress = "0xdad32e13E73ce4155a181cA0D350Fee0f2596940"; // Sepolia
-  // const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"; // Goerli
   const votingEscrowAddress = "0x8100e77899C24b0F7B516153F84868f850C034BF"; // Sepolia
-  const passportUtils = await PassportUtils.deploy(
-    passportIssuerAddress,
-    votingEscrowAddress
-  );
 
-  await passportUtils.deployed();
+  const args = [passportIssuerAddress, votingEscrowAddress];
 
-  console.log("PassportUtils deployed to:", passportUtils.address);
+  console.log('Contract is deploying....');
+  const contractAddress = await deployContract(contractName, args);
+  console.log(`${contractName} deployed to: ${contractAddress}`);
+  console.log('Contract is verifying....');
+  await verifyContract(contractPath, contractAddress, args);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
