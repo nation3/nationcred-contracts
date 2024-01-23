@@ -20,7 +20,6 @@ async function main() {
   const contractName = "MarketeerSkillLevels";
   const contractPath = "contracts/citizens/MarketeerSkillLevels.sol:MarketeerSkillLevels"
 
-
   // Constructor Args
   const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
   const easAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia - https://github.com/ethereum-attestation-service/eas-contracts/tree/master?tab=readme-ov-file#sepolia
