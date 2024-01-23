@@ -1,25 +1,30 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
+import { ethers, run } from "hardhat";
+
+async function deployContract(name: string, args: Array<any>): Promise<string> {
+  const contractFactory = await ethers.getContractFactory(name);
+
+  const contract = await contractFactory.deploy(...args);
+  await contract.deployed();
+  return contract.address;
+}
+
+async function verifyContract(contractPath: string, contractAddress: string, args: Array<any>) {
+  await run("verify:verify", {
+    contract: contractPath,
+    address: contractAddress,
+    constructorArguments: args,
+  });
+}
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const contractName = "Discord";
+  const contractPath = "contracts/Discourse.sol:Discourse"
 
-  // We get the contract to deploy
-  const Discourse = await ethers.getContractFactory("Discourse");
-  const discourse = await Discourse.deploy();
-
-  await discourse.deployed();
-
-  console.log("Discourse deployed to:", discourse.address);
+  console.log('Contract is deploying....');
+  const contractAddress = await deployContract(contractName, []);
+  console.log(`${contractName} deployed to: ${contractAddress}`);
+  console.log('Contract is verifying....');
+  await verifyContract(contractPath, contractAddress, []);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
