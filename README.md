@@ -123,12 +123,14 @@ https://github.com/nation3/foundations/blob/main/deployments/goerli.json
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
-- `utils/PassportUtils.sol`: [`0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90`](https://sepolia.etherscan.io/address/0x4Db31016fe58292B7654C9EDF8Ad106761BB7a90)
-  - > `⚠️ Not yet functional`
-- `citizens/DeveloperSkillLevels.sol`: [`0xcD441F74016bB50ff25959805F6466AdB49950D2`](https://sepolia.etherscan.io/address/0xcD441F74016bB50ff25959805F6466AdB49950D2)
-- `citizens/OperatorSkillLevels.sol`: [`0xb2731b1DB731Bc653ef3286264373BF1306B3e4B`](https://sepolia.etherscan.io/address/0xb2731b1DB731Bc653ef3286264373BF1306B3e4B)
-- `citizens/MarketeerSkillLevels.sol`: [`0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60`](https://sepolia.etherscan.io/address/0x02FF5feb29dF1c03bD6fDd60C03Ac1375045Bd60)
-- NationCred.sol: `0x...`
+- `utils/PassportUtils.sol`: [`0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a`](https://sepolia.etherscan.io/address/0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a)
+- `citizens/DeveloperSkillLevels.sol`: [`0xF7639A56A63a3373E235062273C463eF6203101D`](https://sepolia.etherscan.io/address/0xF7639A56A63a3373E235062273C463eF6203101D)
+- `citizens/OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
+- `citizens/MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
+
+- GitHubUsernames: [`0xAbf34EDabdbA328dAcD7975E7d505812129784d6`](https://sepolia.etherscan.io/address/0xAbf34EDabdbA328dAcD7975E7d505812129784d6)
+- Discord: [`0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a`](https://sepolia.etherscan.io/address/0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a)
+- NationCred: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
 #### Ethereum Attestation Service (EAS)
 
