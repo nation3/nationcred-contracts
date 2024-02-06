@@ -25,14 +25,14 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 contract DevGuildRewardsDistributor {
     string public constant VERSION = "0.6.5";
-    
+
     address public owner;
     IPassportUtils public passportUtils;
     IERC20 public rewardToken;
 
     mapping(address => uint256) public claimable;
     uint256 public claimableTotal;
-    
+
     mapping(address => uint256) public claimed;
     uint256 public claimedTotal;
 
@@ -71,10 +71,10 @@ contract DevGuildRewardsDistributor {
 
         uint256 claimableAmount = claimable[msg.sender];
         rewardToken.transfer(msg.sender, claimableAmount);
-        
+
         claimable[msg.sender] = 0;
         claimableTotal -= claimableAmount;
-        
+
         claimed[msg.sender] += claimableAmount;
         claimedTotal += claimableAmount;
     }
