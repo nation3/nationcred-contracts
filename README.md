@@ -132,6 +132,8 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - Discord: [`0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a`](https://sepolia.etherscan.io/address/0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a)
 - NationCred: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
+- `rewards/DevGuildRewardsDistributor.sol`: [`0xF335Ad38d69eCB2B7E4D48D2e85FfC57599845d8`](https://sepolia.etherscan.io/address/0xF335Ad38d69eCB2B7E4D48D2e85FfC57599845d8)
+
 #### Ethereum Attestation Service (EAS)
 
 EAS schema for `DeveloperSkillLevels.sol`, `OperatorSkillLevels.sol`, `MarketeerSkillLevels.sol`:
