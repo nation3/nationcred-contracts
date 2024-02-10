@@ -22,16 +22,17 @@ describe("DevGuildRewardsDistributor", function () {
       votingEscrow.address
     );
 
-    // TO DO: reward token mock
+    const RewardToken = await ethers.getContractFactory("ERC20Mock");
+    const rewardToken = await RewardToken.deploy();
 
     const DevGuildRewardsDistributor = await ethers.getContractFactory("DevGuildRewardsDistributor");
     const devGuildRewardsDistributor = await DevGuildRewardsDistributor.deploy(
       passportUtils.address,
-      ethers.constants.AddressZero
+      rewardToken.address
     );
     await devGuildRewardsDistributor.deployed();
 
-    return { owner, otherAccount, devGuildRewardsDistributor, votingEscrow, passportUtils, passportIssuer };
+    return { owner, otherAccount, devGuildRewardsDistributor, votingEscrow, passportUtils, passportIssuer, rewardToken };
   }
 
   it("setOwner", async function() {
@@ -96,8 +97,29 @@ describe("DevGuildRewardsDistributor", function () {
   });
   
   it("claim - citizen with valid passport", async function () {
-    const { owner, devGuildRewardsDistributor, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    
+    // Claim passport
+    await passportIssuer.claim();
 
-    // TO DO
+    // Add reward
+    await devGuildRewardsDistributor.addReward(owner.address, ethers.utils.parseEther("3"));
+    let claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    // Transfer reward tokens to the contract
+    await rewardToken.mint(devGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
+    
+    // Claim reward
+    await devGuildRewardsDistributor.claim();
+
+    claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(0);
+
+    const claimed = await devGuildRewardsDistributor.claimed(owner.address);
+    console.log('claimed:', claimed);
+    expect(claimed).to.equal(ethers.utils.parseEther("3"));
   });
 });
