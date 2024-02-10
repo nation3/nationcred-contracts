@@ -25,6 +25,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 contract DevGuildRewardsDistributor {
     string public constant VERSION = "0.6.5";
+    uint64 public constant CLIFF_VESTING_DATE = 1735689600; // 2025-01-01
 
     address public owner;
     IPassportUtils public passportUtils;
@@ -38,6 +39,7 @@ contract DevGuildRewardsDistributor {
 
     error NotPassportOwner(address illegalAlien);
     error PassportExpired(address citizen);
+    error NotYetVestingDate(address citizen);
 
     constructor(address passportUtils_, address rewardToken_) {
         owner = address(msg.sender);
@@ -67,6 +69,9 @@ contract DevGuildRewardsDistributor {
         }
         if (passportUtils.isExpired(msg.sender)) {
             revert PassportExpired(msg.sender);
+        }
+        if (CLIFF_VESTING_DATE > block.timestamp) {
+            revert NotYetVestingDate(msg.sender);
         }
 
         uint256 claimableAmount = claimable[msg.sender];

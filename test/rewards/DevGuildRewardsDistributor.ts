@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { loadFixture, time } from "@nomicfoundation/hardhat-network-helpers";
 
 describe("DevGuildRewardsDistributor", function () {
   async function deploymentFixture() {
@@ -96,7 +96,7 @@ describe("DevGuildRewardsDistributor", function () {
     expect(claimed).to.equal(0);
   });
   
-  it("claim - citizen with valid passport", async function () {
+  it("claim - citizen with valid passport - vesting date not yet reached", async function () {
     const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
     
     // Claim passport
@@ -110,6 +110,38 @@ describe("DevGuildRewardsDistributor", function () {
 
     // Transfer reward tokens to the contract
     await rewardToken.mint(devGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
+    
+    // Claim reward
+    await expect(
+      devGuildRewardsDistributor.claim()
+    ).to.be.revertedWithCustomError(devGuildRewardsDistributor, "NotYetVestingDate");
+
+    claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    const claimed = await devGuildRewardsDistributor.claimed(owner.address);
+    console.log('claimed:', claimed);
+    expect(claimed).to.equal(0);
+  });
+
+  it("claim - citizen with valid passport - vesting date reached", async function () {
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    
+    // Claim passport
+    await passportIssuer.claim();
+
+    // Add reward
+    await devGuildRewardsDistributor.addReward(owner.address, ethers.utils.parseEther("3"));
+    let claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    // Transfer reward tokens to the contract
+    await rewardToken.mint(devGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
+    
+    const sixtyWeeksInSeconds = 60 * 7 * 24 * 60 * 60 * 1_000;
+    await time.increase(sixtyWeeksInSeconds);
     
     // Claim reward
     await devGuildRewardsDistributor.claim();
