@@ -133,6 +133,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - NationCred: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
 - `rewards/DevGuildRewardsDistributor.sol`: [`0x13A8A27Aee805BF62243a7ae0Ce06523EEB6e36d`](https://sepolia.etherscan.io/address/0x13A8A27Aee805BF62243a7ae0Ce06523EEB6e36d)
+- `rewards/OpsGuildRewardsDistributor.sol`: [`0x13df6b567293f7C768eD98AE0339aFF77e240b7c`](https://sepolia.etherscan.io/address/0x13df6b567293f7C768eD98AE0339aFF77e240b7c)
 
 #### Ethereum Attestation Service (EAS)
 
