@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.19;
 
-import {IPassportUtils} from "./utils/IPassportUtils.sol";
+import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
 contract GitHubUsernames {
     string public constant VERSION = "0.6.5";
