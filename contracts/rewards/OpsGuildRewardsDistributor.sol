@@ -41,7 +41,11 @@ contract OpsGuildRewardsDistributor {
     error PassportExpired(address citizen);
     error NotYetVestingDate(address citizen);
 
-    constructor(address passportUtils_, address rewardToken_, uint64 CLIFF_VESTING_DATE_) {
+    constructor(
+        address passportUtils_,
+        address rewardToken_,
+        uint64 CLIFF_VESTING_DATE_
+    ) {
         owner = address(msg.sender);
         passportUtils = IPassportUtils(passportUtils_);
         rewardToken = IERC20(rewardToken_);
