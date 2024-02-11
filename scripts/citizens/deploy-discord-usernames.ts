@@ -17,8 +17,8 @@ async function verifyContract(contractPath: string, contractAddress: string, arg
 }
 
 async function main() {
-  const contractName = "Discord";
-  const contractPath = "contracts/Discord.sol:Discord"
+  const contractName = "DiscordUsernames";
+  const contractPath = "contracts/DiscordUsernames.sol:DiscordUsernames"
 
   console.log('Contract is deploying....');
   const contractAddress = await deployContract(contractName, []);
