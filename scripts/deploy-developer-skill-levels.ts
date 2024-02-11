@@ -30,8 +30,18 @@ async function main() {
   console.log('Contract is deploying....');
   const contractAddress = await deployContract(contractName, args);
   console.log(`${contractName} deployed to: ${contractAddress}`);
+
+  console.log('Waiting for 30 seconds before verifying...');
+  await sleep(30_000);
+  
   console.log('Contract is verifying....');
   await verifyContract(contractPath, contractAddress, args);
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 // We recommend this pattern to be able to use async/await everywhere

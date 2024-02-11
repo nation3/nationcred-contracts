@@ -81,7 +81,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy-<contract>.ts --network sepolia
+npx hardhat run --network sepolia scripts/deploy-<contract>.ts
 ```
 
 ```
@@ -97,7 +97,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy-<contract>.ts --network mainnet
+npx hardhat run --network mainnet scripts/deploy-<contract>.ts
 ```
 
 ```
@@ -132,7 +132,8 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - Discord: [`0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a`](https://sepolia.etherscan.io/address/0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a)
 - NationCred: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
-- `rewards/DevGuildRewardsDistributor.sol`: [`0xF335Ad38d69eCB2B7E4D48D2e85FfC57599845d8`](https://sepolia.etherscan.io/address/0xF335Ad38d69eCB2B7E4D48D2e85FfC57599845d8)
+- `rewards/DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)
+- `rewards/OpsGuildRewardsDistributor.sol`: [`0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485`](https://sepolia.etherscan.io/address/0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485)
 
 #### Ethereum Attestation Service (EAS)
 

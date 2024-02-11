@@ -17,14 +17,15 @@ async function verifyContract(contractPath: string, contractAddress: string, arg
 }
 
 async function main() {
-  const contractName = "PassportUtils";
-  const contractPath = "contracts/utils/PassportUtils.sol:PassportUtils"
+  const contractName = "OpsGuildRewardsDistributor";
+  const contractPath = "contracts/rewards/OpsGuildRewardsDistributor.sol:OpsGuildRewardsDistributor"
 
   // Constructor Args
-  const passportIssuerAddress = "0xdad32e13E73ce4155a181cA0D350Fee0f2596940"; // Sepolia
-  const votingEscrowAddress = "0x8100e77899C24b0F7B516153F84868f850C034BF"; // Sepolia
+  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
+  const rewardTokenAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Sepolia
+  const CLIFF_VESTING_DATE = 1735689600; // 2025-01-01
 
-  const args = [passportIssuerAddress, votingEscrowAddress];
+  const args = [passportUtilsAddress, rewardTokenAddress, CLIFF_VESTING_DATE];
 
   console.log('Contract is deploying....');
   const contractAddress = await deployContract(contractName, args);
@@ -32,7 +33,7 @@ async function main() {
 
   console.log('Waiting for 30 seconds before verifying...');
   await sleep(30_000);
-  
+
   console.log('Contract is verifying....');
   await verifyContract(contractPath, contractAddress, args);
 }

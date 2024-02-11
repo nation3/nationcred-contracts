@@ -23,7 +23,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  *         Nation3 DAO
  *     https://nation3.org
  */
-contract DevGuildRewardsDistributor {
+contract OpsGuildRewardsDistributor {
     string public constant VERSION = "0.6.5";
 
     address public owner;

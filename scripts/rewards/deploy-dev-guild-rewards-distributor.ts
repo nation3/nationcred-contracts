@@ -23,14 +23,25 @@ async function main() {
   // Constructor Args
   const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
   const rewardTokenAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Sepolia
+  const CLIFF_VESTING_DATE = 1735689600; // 2025-01-01
 
-  const args = [passportUtilsAddress, rewardTokenAddress];
+  const args = [passportUtilsAddress, rewardTokenAddress, CLIFF_VESTING_DATE];
 
   console.log('Contract is deploying....');
   const contractAddress = await deployContract(contractName, args);
   console.log(`${contractName} deployed to: ${contractAddress}`);
+
+  console.log('Waiting for 30 seconds before verifying...');
+  await sleep(30_000);
+  
   console.log('Contract is verifying....');
   await verifyContract(contractPath, contractAddress, args);
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 // We recommend this pattern to be able to use async/await everywhere

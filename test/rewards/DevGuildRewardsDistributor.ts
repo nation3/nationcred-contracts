@@ -1,6 +1,8 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { loadFixture, time } from "@nomicfoundation/hardhat-network-helpers";
+
+const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
 
 describe("DevGuildRewardsDistributor", function () {
   async function deploymentFixture() {
@@ -22,16 +24,20 @@ describe("DevGuildRewardsDistributor", function () {
       votingEscrow.address
     );
 
-    // TO DO: reward token mock
+    const RewardToken = await ethers.getContractFactory("ERC20Mock");
+    const rewardToken = await RewardToken.deploy();
+
+    const CLIFF_VESTING_DATE = await time.latest() + ONE_YEAR_IN_SECS;
 
     const DevGuildRewardsDistributor = await ethers.getContractFactory("DevGuildRewardsDistributor");
     const devGuildRewardsDistributor = await DevGuildRewardsDistributor.deploy(
       passportUtils.address,
-      ethers.constants.AddressZero
+      rewardToken.address,
+      CLIFF_VESTING_DATE
     );
     await devGuildRewardsDistributor.deployed();
 
-    return { owner, otherAccount, devGuildRewardsDistributor, votingEscrow, passportUtils, passportIssuer };
+    return { owner, otherAccount, devGuildRewardsDistributor, votingEscrow, passportUtils, passportIssuer, rewardToken };
   }
 
   it("setOwner", async function() {
@@ -95,9 +101,65 @@ describe("DevGuildRewardsDistributor", function () {
     expect(claimed).to.equal(0);
   });
   
-  it("claim - citizen with valid passport", async function () {
-    const { owner, devGuildRewardsDistributor, passportIssuer } = await loadFixture(deploymentFixture);
+  it("claim - citizen with valid passport - vesting date not yet reached", async function () {
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    
+    // Claim passport
+    await passportIssuer.claim();
 
-    // TO DO
+    // Add reward
+    await devGuildRewardsDistributor.addReward(owner.address, ethers.utils.parseEther("3"));
+    let claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    // Transfer reward tokens to the contract
+    await rewardToken.mint(devGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
+    
+    // Claim reward
+    await expect(
+      devGuildRewardsDistributor.claim()
+    ).to.be.revertedWithCustomError(devGuildRewardsDistributor, "NotYetVestingDate");
+
+    claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    const claimed = await devGuildRewardsDistributor.claimed(owner.address);
+    console.log('claimed:', claimed);
+    expect(claimed).to.equal(0);
+  });
+
+  it("claim - citizen with valid passport - vesting date reached", async function () {
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    
+    // Claim passport
+    await passportIssuer.claim();
+
+    // Add reward
+    await devGuildRewardsDistributor.addReward(owner.address, ethers.utils.parseEther("3"));
+    let claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(ethers.utils.parseEther("3"));
+
+    // Transfer reward tokens to the contract
+    await rewardToken.mint(devGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
+    
+    // Simulate the passage of time, to 1 week past the vesting date
+    const ONE_WEEK_IN_SECS = 7 * 24 * 60 * 60;
+    const oneWeekPastVestingDate = Number(await devGuildRewardsDistributor.CLIFF_VESTING_DATE()) + ONE_WEEK_IN_SECS;
+    console.log('oneWeekPastVestingDate:', oneWeekPastVestingDate);
+    await time.increaseTo(oneWeekPastVestingDate);
+    
+    // Claim reward
+    await devGuildRewardsDistributor.claim();
+
+    claimable = await devGuildRewardsDistributor.claimable(owner.address);
+    console.log('claimable:', claimable);
+    expect(claimable).to.equal(0);
+
+    const claimed = await devGuildRewardsDistributor.claimed(owner.address);
+    console.log('claimed:', claimed);
+    expect(claimed).to.equal(ethers.utils.parseEther("3"));
   });
 });
