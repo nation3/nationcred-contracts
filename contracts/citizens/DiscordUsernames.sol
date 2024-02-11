@@ -1,19 +1,39 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.19;
 
+import {IPassportUtils} from "../utils/IPassportUtils.sol";
+
 contract DiscordUsernames {
+    string public constant VERSION = "0.6.5";
+    address public owner;
     mapping(address => string) public usernames;
+    IPassportUtils public passportUtils;
 
-    event UsernameUpdated();
-    event UsernameDeleted();
+    error PassportExpired(address citizen);
 
-    function updateUsername(string calldata username) public {
-        usernames[msg.sender] = username;
-        emit UsernameUpdated();
+    event UsernameUpdated(address citizen, string username);
+
+    constructor(address passportUtils_) {
+        owner = address(msg.sender);
+        passportUtils = IPassportUtils(passportUtils_);
     }
 
-    function deleteUsername() public {
-        delete usernames[msg.sender];
-        emit UsernameDeleted();
+    function setOwner(address owner_) public {
+        require(msg.sender == owner, "You are not the owner");
+        owner = owner_;
+    }
+
+    function setPassportUtils(address passportUtils_) public {
+        require(msg.sender == owner, "You are not the owner");
+        passportUtils = IPassportUtils(passportUtils_);
+    }
+
+    function updateUsername(string calldata username) public {
+        if (passportUtils.isExpired(msg.sender)) {
+            revert PassportExpired(msg.sender);
+        } else {
+            usernames[msg.sender] = username;
+            emit UsernameUpdated(msg.sender, username);
+        }
     }
 }

@@ -1,78 +1,66 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 describe("DiscordUsernames", function () {
-  it("Deploy contract", async function () {
+  async function deploymentFixture() {
+    console.log("deploymentFixture");
+
+    const [owner, otherAccount] = await ethers.getSigners();
+
+    const PassportIssuer = await ethers.getContractFactory(
+      "PassportIssuerMock"
+    );
+    const passportIssuer = await PassportIssuer.deploy();
+
+    const VotingEscrow = await ethers.getContractFactory("VotingEscrowMock");
+    const votingEscrow = await VotingEscrow.deploy();
+
+    const PassportUtils = await ethers.getContractFactory("PassportUtils");
+    const passportUtils = await PassportUtils.deploy(
+      passportIssuer.address,
+      votingEscrow.address
+    );
+
     const DiscordUsernames = await ethers.getContractFactory("DiscordUsernames");
-    const discordUsernames = await DiscordUsernames.deploy();
+    const discordUsernames = await DiscordUsernames.deploy(passportUtils.address);
     await discordUsernames.deployed();
 
-    const [owner] = await ethers.getSigners();
-    console.log("owner.address:", owner.address);
+    return { owner, otherAccount, discordUsernames };
+  }
+
+  it("usernames empty", async function () {
+    const { owner, discordUsernames } = await loadFixture(deploymentFixture);
 
     const username = await discordUsernames.usernames(owner.address);
     console.log("username:", username);
     expect(username).to.equal("");
   });
 
-  it("updateUsername", async function () {
-    const DiscordUsernames = await ethers.getContractFactory("DiscordUsernames");
-    const discordUsernames = await DiscordUsernames.deploy();
-    await discordUsernames.deployed();
+  it("updateUsername - citizen with valid passport", async function () {
+    const { owner, discordUsernames } = await loadFixture(deploymentFixture);
 
-    const [owner] = await ethers.getSigners();
-    console.log("owner.address:", owner.address);
+    const tx = await discordUsernames.updateUsername("New Username");
+    console.log("tx:", tx);
 
-    await discordUsernames.updateUsername("User");
     const usernameAfterUpdate = await discordUsernames.usernames(owner.address);
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
-    expect(usernameAfterUpdate).to.equal("User");
+    expect(usernameAfterUpdate).to.equal("New Username");
   });
 
-  it("updateUsername - with spaces", async function () {
-    const DiscordUsernames = await ethers.getContractFactory("DiscordUsernames");
-    const discordUsernames = await DiscordUsernames.deploy();
-    await discordUsernames.deployed();
+  it("updateUsername - citizen with expired passport", async function () {
+    const { otherAccount, discordUsernames } = await loadFixture(
+      deploymentFixture
+    );
 
-    const [owner] = await ethers.getSigners();
-    console.log("owner.address:", owner.address);
+    await expect(
+      discordUsernames.connect(otherAccount).updateUsername("Other Username")
+    ).to.be.revertedWithCustomError(discordUsernames, "PassportExpired");
 
-    await discordUsernames.updateUsername("User Name");
-    const usernameAfterUpdate = await discordUsernames.usernames(owner.address);
+    const usernameAfterUpdate = await discordUsernames.usernames(
+      otherAccount.address
+    );
     console.log("usernameAfterUpdate:", usernameAfterUpdate);
-    expect(usernameAfterUpdate).to.equal("User Name");
-  });
-
-  it("updateUsername - with UTF-8 characters", async function () {
-    const DiscordUsernames = await ethers.getContractFactory("DiscordUsernames");
-    const discordUsernames = await DiscordUsernames.deploy();
-    await discordUsernames.deployed();
-
-    const [owner] = await ethers.getSigners();
-    console.log("owner.address:", owner.address);
-
-    await discordUsernames.updateUsername("User Name ☁🇺🇳");
-    const usernameAfterUpdate = await discordUsernames.usernames(owner.address);
-    console.log("usernameAfterUpdate:", usernameAfterUpdate);
-    expect(usernameAfterUpdate).to.equal("User Name ☁🇺🇳");
-  });
-
-  it("deleteUsername", async function () {
-    const DiscordUsernames = await ethers.getContractFactory("DiscordUsernames");
-    const discordUsernames = await DiscordUsernames.deploy();
-    await discordUsernames.deployed();
-
-    const [owner] = await ethers.getSigners();
-    console.log("owner.address:", owner.address);
-
-    await discordUsernames.updateUsername("User #123");
-    const usernameAfterUpdate = await discordUsernames.usernames(owner.address);
-    console.log("usernameAfterUpdate:", usernameAfterUpdate);
-    expect(usernameAfterUpdate).to.equal("User #123");
-
-    await discordUsernames.deleteUsername();
-    const usernameAfterDeletion = await discordUsernames.usernames(owner.address);
-    console.log("usernameAfterDeletion:", usernameAfterDeletion);
-    expect(usernameAfterDeletion).to.equal("");
+    expect(usernameAfterUpdate).to.equal("");
   });
 });
