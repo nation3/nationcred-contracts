@@ -2,6 +2,8 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { loadFixture, time } from "@nomicfoundation/hardhat-network-helpers";
 
+const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
+
 describe("OpsGuildRewardsDistributor", function () {
   async function deploymentFixture() {
     console.log("deploymentFixture");
@@ -25,10 +27,13 @@ describe("OpsGuildRewardsDistributor", function () {
     const RewardToken = await ethers.getContractFactory("ERC20Mock");
     const rewardToken = await RewardToken.deploy();
 
+    const CLIFF_VESTING_DATE = await time.latest() + ONE_YEAR_IN_SECS;
+
     const OpsGuildRewardsDistributor = await ethers.getContractFactory("OpsGuildRewardsDistributor");
     const opsGuildRewardsDistributor = await OpsGuildRewardsDistributor.deploy(
       passportUtils.address,
-      rewardToken.address
+      rewardToken.address,
+      CLIFF_VESTING_DATE
     );
     await opsGuildRewardsDistributor.deployed();
 
@@ -140,8 +145,11 @@ describe("OpsGuildRewardsDistributor", function () {
     // Transfer reward tokens to the contract
     await rewardToken.mint(opsGuildRewardsDistributor.address, ethers.utils.parseEther("100"));
     
-    const sixtyWeeksInSeconds = 60 * 7 * 24 * 60 * 60 * 1_000;
-    await time.increase(sixtyWeeksInSeconds);
+    // Simulate the passage of time, to 1 week past the vesting date
+    const ONE_WEEK_IN_SECS = 7 * 24 * 60 * 60;
+    const oneWeekPastVestingDate = Number(await opsGuildRewardsDistributor.CLIFF_VESTING_DATE()) + ONE_WEEK_IN_SECS;
+    console.log('oneWeekPastVestingDate:', oneWeekPastVestingDate);
+    await time.increaseTo(oneWeekPastVestingDate);
     
     // Claim reward
     await opsGuildRewardsDistributor.claim();
