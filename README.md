@@ -110,18 +110,21 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
-- `citizens/DeveloperSkillLevels.sol`: [`0xF7639A56A63a3373E235062273C463eF6203101D`](https://sepolia.etherscan.io/address/0xF7639A56A63a3373E235062273C463eF6203101D)
-- `citizens/OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
-- `citizens/MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
+- `citizens/`
+    - `DeveloperSkillLevels.sol`: [`0xF7639A56A63a3373E235062273C463eF6203101D`](https://sepolia.etherscan.io/address/0xF7639A56A63a3373E235062273C463eF6203101D)
+    - `OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
+    - `MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
 
-- `citizens/DiscordUsernames`: [`0xb3104BB77eEba2Ee3B271212fE022B1C32C83226`](https://sepolia.etherscan.io/address/0xb3104BB77eEba2Ee3B271212fE022B1C32C83226)
-- `citizens/DiscourseUsernames`: [`0xc8Ac7573466c157564fEf5a1393f878aB72fc58B`](https://sepolia.etherscan.io/address/0xc8Ac7573466c157564fEf5a1393f878aB72fc58B)
-- `citizens/GitHubUsernames`: [`0xAbf34EDabdbA328dAcD7975E7d505812129784d6`](https://sepolia.etherscan.io/address/0xAbf34EDabdbA328dAcD7975E7d505812129784d6)
+    - `DiscordUsernames`: [`0xb3104BB77eEba2Ee3B271212fE022B1C32C83226`](https://sepolia.etherscan.io/address/0xb3104BB77eEba2Ee3B271212fE022B1C32C83226)
+    - `DiscourseUsernames`: [`0xc8Ac7573466c157564fEf5a1393f878aB72fc58B`](https://sepolia.etherscan.io/address/0xc8Ac7573466c157564fEf5a1393f878aB72fc58B)
+    - `GitHubUsernames`: [`0xAbf34EDabdbA328dAcD7975E7d505812129784d6`](https://sepolia.etherscan.io/address/0xAbf34EDabdbA328dAcD7975E7d505812129784d6)
 
-- `rewards/DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)
-- `rewards/OpsGuildRewardsDistributor.sol`: [`0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485`](https://sepolia.etherscan.io/address/0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485)
+- `rewards/`
+    - `DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)
+    - `OpsGuildRewardsDistributor.sol`: [`0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485`](https://sepolia.etherscan.io/address/0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485)
 
-- `utils/PassportUtils.sol`: [`0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a`](https://sepolia.etherscan.io/address/0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a)
+- `utils/`
+    - `PassportUtils.sol`: [`0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a`](https://sepolia.etherscan.io/address/0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a)
 
 - `NationCred.sol`: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
