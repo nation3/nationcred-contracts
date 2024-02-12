@@ -18,7 +18,7 @@ async function verifyContract(contractPath: string, contractAddress: string, arg
 
 async function main() {
   const contractName = "GitHubUsernames";
-  const contractPath = "contracts/GitHubUsernames.sol:GitHubUsernames"
+  const contractPath = "contracts/citizens/GitHubUsernames.sol:GitHubUsernames"
 
   // Constructor Args
   const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia

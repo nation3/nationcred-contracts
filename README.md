@@ -106,7 +106,7 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (Version `0.6.4`)
+### Sepolia (`v0.6.6`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
@@ -114,7 +114,8 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - `citizens/OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
 - `citizens/MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
 
-- `citizens/Discord`: [`0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a`](https://sepolia.etherscan.io/address/0x5FA56F8EEBecaA5E57C6b737164f9fA398840D0a)
+- `citizens/DiscordUsernames`: [`0xb3104BB77eEba2Ee3B271212fE022B1C32C83226`](https://sepolia.etherscan.io/address/0xb3104BB77eEba2Ee3B271212fE022B1C32C83226)
+- `citizens/DiscourseUsernames`: [`0xc8Ac7573466c157564fEf5a1393f878aB72fc58B`](https://sepolia.etherscan.io/address/0xc8Ac7573466c157564fEf5a1393f878aB72fc58B)
 - `citizens/GitHubUsernames`: [`0xAbf34EDabdbA328dAcD7975E7d505812129784d6`](https://sepolia.etherscan.io/address/0xAbf34EDabdbA328dAcD7975E7d505812129784d6)
 
 - `rewards/DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)

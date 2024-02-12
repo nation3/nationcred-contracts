@@ -17,18 +17,23 @@ async function verifyContract(contractPath: string, contractAddress: string, arg
 }
 
 async function main() {
-  const contractName = "DiscordUsernames";
-  const contractPath = "contracts/DiscourseUsernames.sol:DiscourseUsernames"
+  const contractName = "DiscourseUsernames";
+  const contractPath = "contracts/citizens/DiscourseUsernames.sol:DiscourseUsernames"
+
+  // Constructor Args
+  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
+
+  const args = [passportUtilsAddress];
 
   console.log('Contract is deploying....');
-  const contractAddress = await deployContract(contractName, []);
+  const contractAddress = await deployContract(contractName, args);
   console.log(`${contractName} deployed to: ${contractAddress}`);
 
   console.log('Waiting for 30 seconds before verifying...');
   await sleep(30_000);
   
   console.log('Contract is verifying....');
-  await verifyContract(contractPath, contractAddress, []);
+  await verifyContract(contractPath, contractAddress, args);
 }
 
 function sleep(ms: number) {
