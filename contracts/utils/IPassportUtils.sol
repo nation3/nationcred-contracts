@@ -28,7 +28,7 @@ interface IPassportUtils {
 
     /**
      * Returns the owner of a passport.
-     * 
+     *
      * @param passportID The identifier of an NFT passport
      */
     function getOwnerAddress(uint16 passportID) external view returns (address);
