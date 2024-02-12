@@ -133,7 +133,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 EAS schema for `citizens/DeveloperSkillLevels.sol`, `citizens/OperatorSkillLevels.sol`, `citizens/MarketeerSkillLevels.sol`:
 https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
 
-### Mainnet
+### Mainnet (`v0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
@@ -144,7 +144,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `NationCred.sol`: [`0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`](https://etherscan.io/address/0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925)
 
-## npm
+## npm (`v0.6.6`)
 
 https://www.npmjs.com/package/@nation3/nationcred-contracts
 
