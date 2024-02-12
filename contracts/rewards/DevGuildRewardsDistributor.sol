@@ -24,7 +24,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  *     https://nation3.org
  */
 contract DevGuildRewardsDistributor {
-    string public constant VERSION = "0.6.6";
+    string public constant VERSION = "0.6.7";
 
     address public owner;
     IPassportUtils public passportUtils;

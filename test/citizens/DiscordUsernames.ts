@@ -26,7 +26,7 @@ describe("DiscordUsernames", function () {
     const discordUsernames = await DiscordUsernames.deploy(passportUtils.address);
     await discordUsernames.deployed();
 
-    return { owner, otherAccount, discordUsernames };
+    return { owner, otherAccount, discordUsernames, passportIssuer };
   }
 
   it("usernames empty", async function () {
@@ -38,7 +38,10 @@ describe("DiscordUsernames", function () {
   });
 
   it("updateUsername - citizen with valid passport", async function () {
-    const { owner, discordUsernames } = await loadFixture(deploymentFixture);
+    const { owner, discordUsernames, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.claim();
 
     const tx = await discordUsernames.updateUsername("New Username");
     console.log("tx:", tx);
@@ -49,9 +52,12 @@ describe("DiscordUsernames", function () {
   });
 
   it("updateUsername - citizen with expired passport", async function () {
-    const { otherAccount, discordUsernames } = await loadFixture(
+    const { otherAccount, discordUsernames, passportIssuer } = await loadFixture(
       deploymentFixture
     );
+
+    // Claim passport
+    await passportIssuer.connect(otherAccount).claim();
 
     await expect(
       discordUsernames.connect(otherAccount).updateUsername("Other Username")
