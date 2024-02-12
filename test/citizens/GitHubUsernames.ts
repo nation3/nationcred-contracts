@@ -26,7 +26,7 @@ describe("GitHubUsernames", function () {
     const githubUsernames = await GitHubUsernames.deploy(passportUtils.address);
     await githubUsernames.deployed();
 
-    return { owner, otherAccount, githubUsernames };
+    return { owner, otherAccount, githubUsernames, passportIssuer };
   }
 
   it("usernames empty", async function () {
@@ -38,7 +38,10 @@ describe("GitHubUsernames", function () {
   });
 
   it("updateUsername - citizen with valid passport", async function () {
-    const { owner, githubUsernames } = await loadFixture(deploymentFixture);
+    const { owner, githubUsernames, passportIssuer } = await loadFixture(deploymentFixture);
+
+    // Claim passport
+    await passportIssuer.claim();
 
     const tx = await githubUsernames.updateUsername("New Username");
     console.log("tx:", tx);
@@ -49,9 +52,12 @@ describe("GitHubUsernames", function () {
   });
 
   it("updateUsername - citizen with expired passport", async function () {
-    const { otherAccount, githubUsernames } = await loadFixture(
+    const { otherAccount, githubUsernames, passportIssuer } = await loadFixture(
       deploymentFixture
     );
+
+    // Claim passport
+    await passportIssuer.connect(otherAccount).claim();
 
     await expect(
       githubUsernames.connect(otherAccount).updateUsername("Other Username")
