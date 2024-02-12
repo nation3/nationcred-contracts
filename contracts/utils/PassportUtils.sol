@@ -59,7 +59,7 @@ contract PassportUtils is IPassportUtils {
         uint256 lockAmount,
         uint256 lockEnd,
         uint256 votingEscrowThreshold
-    ) public view returns (uint256) {
+    ) public pure returns (uint256) {
         if (lockAmount < votingEscrowThreshold) {
             return 0;
         }
