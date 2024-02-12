@@ -25,7 +25,7 @@ import {NO_EXPIRATION_TIME, EMPTY_UID} from "@ethereum-attestation-service/eas-c
  *     https://nation3.org
  */
 contract MarketeerSkillLevels {
-    string public constant VERSION = "0.6.6";
+    string public constant VERSION = "0.6.7";
     address public owner;
     mapping(address => uint256) public skillLevelAverages;
     mapping(address => uint8) public skillLevelRatingsCount;
