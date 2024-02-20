@@ -1,11 +1,37 @@
-//SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.19;
 
+/**
+ *        ---------::::
+ *     ---------:---::::::
+ *   -----------::---:::::::
+ *  ------------:.:--::::::::
+ * -------------: .:--::::::::
+ * -------------:   .:::::::::
+ * -------------:.......::::::
+ * -----:..    .:-------::::::
+ * --------:.. .:-------::::::
+ * ----------:..:--------:::::
+ *  -----------.:--------::::
+ *   ----------::--------:::
+ *     -------------------
+ *        -------------
+ *
+ *         Nation3 DAO
+ *     https://nation3.org
+ */
 interface IPassportUtils {
     /**
      * Returns `true` if an account is the owner of a passport.
      */
     function isOwner(address account) external view returns (bool);
+
+    /**
+     * Returns the owner of a passport.
+     *
+     * @param passportID The identifier of an NFT passport
+     */
+    function getOwnerAddress(uint16 passportID) external view returns (address);
 
     /**
      * Returns `true` if a citizen's passport has become revocable.

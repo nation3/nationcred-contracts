@@ -1,7 +1,9 @@
-//SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.19;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
+import {IEAS, AttestationRequest, AttestationRequestData} from "@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol";
+import {NO_EXPIRATION_TIME, EMPTY_UID} from "@ethereum-attestation-service/eas-contracts/contracts/Common.sol";
 
 /**
  *        ---------::::
@@ -23,13 +25,15 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  *     https://nation3.org
  */
 contract OperatorSkillLevels {
-    string public constant VERSION = "0.6.4";
+    string public constant VERSION = "0.6.7";
     address public owner;
     mapping(address => uint256) public skillLevelAverages;
     mapping(address => uint8) public skillLevelRatingsCount;
     mapping(address => uint256) private skillLevelRatingsSum;
     mapping(address => mapping(address => uint8)) public skillLevelRatings;
     IPassportUtils public passportUtils;
+    IEAS private immutable eas;
+    bytes32 private immutable easSchemaUID;
 
     error NotPassportOwner(address illegalAlien);
     error PassportExpired(address citizen);
@@ -37,9 +41,11 @@ contract OperatorSkillLevels {
 
     event Rated(address operator, uint8 rating, address citizen);
 
-    constructor(address passportUtils_) {
+    constructor(address passportUtils_, address eas_, bytes32 easSchemaUID_) {
         owner = address(msg.sender);
         passportUtils = IPassportUtils(passportUtils_);
+        eas = IEAS(eas_);
+        easSchemaUID = easSchemaUID_;
     }
 
     function setOwner(address owner_) public {
@@ -76,13 +82,8 @@ contract OperatorSkillLevels {
         uint256 ratingInGwei = rating * 1 ether;
 
         if (skillLevelRatings[operator][msg.sender] == 0) {
-            if (skillLevelAverages[operator] == 0) {
-                skillLevelRatingsCount[operator] = 1;
-                skillLevelRatingsSum[operator] = ratingInGwei;
-            } else {
-                skillLevelRatingsCount[operator] += 1;
-                skillLevelRatingsSum[operator] += ratingInGwei;
-            }
+            skillLevelRatingsCount[operator] += 1;
+            skillLevelRatingsSum[operator] += ratingInGwei;
         } else {
             uint256 previousRatingInGwei = skillLevelRatings[operator][
                 msg.sender
@@ -98,5 +99,19 @@ contract OperatorSkillLevels {
         skillLevelAverages[operator] = newSkillLevelAverage;
         skillLevelRatings[operator][msg.sender] = rating;
         emit Rated(operator, rating, msg.sender);
+
+        eas.attest(
+            AttestationRequest({
+                schema: easSchemaUID,
+                data: AttestationRequestData({
+                    recipient: operator,
+                    expirationTime: NO_EXPIRATION_TIME,
+                    revocable: false,
+                    refUID: EMPTY_UID,
+                    data: abi.encode("Operator", rating),
+                    value: 0
+                })
+            })
+        );
     }
 }

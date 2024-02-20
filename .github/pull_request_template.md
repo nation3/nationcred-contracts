@@ -11,7 +11,8 @@
 <!--- Please describe in detail how you tested your changes. -->
 
 - [ ] Status checks pass
-- [ ] Works on Goerli
+- [ ] ~~Works on Goerli~~
+- [ ] Works on Sepolia
 - [ ] Works on Mainnet
 
 ## Are There Admin Tasks?
