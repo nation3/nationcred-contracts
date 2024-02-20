@@ -1,6 +1,6 @@
 {
   "name": "nationcred-contracts",
-  "version": "0.6.4",
+  "version": "0.6.7",
   "description": "NationCred smart contracts",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Nation3 DAO",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@ethereum-attestation-service/eas-contracts": "^1.3.7",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^3.1.7",
     "@openzeppelin/contracts": "^5.0.0",
