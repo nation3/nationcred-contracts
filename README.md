@@ -81,7 +81,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy-<contract>.ts --network sepolia
+npx hardhat run --network sepolia scripts/deploy-<contract>.ts
 ```
 
 ```
@@ -97,7 +97,7 @@ cp .env.example .env
 ```
 
 ```
-npx hardhat run scripts/deploy-<contract>.ts --network mainnet
+npx hardhat run --network mainnet scripts/deploy-<contract>.ts
 ```
 
 ```
@@ -106,29 +106,56 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Goerli
+### Sepolia (`v0.6.7`)
 
-https://github.com/nation3/foundations/blob/main/deployments/goerli.json
+https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
-- utils/PassportUtils.sol: [`0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b`](https://goerli.etherscan.io/address/0xdBBCE0e796d10C95D23b4AAfCD19DEf268502A5b#code)
-- citizens/DeveloperSkillLevels.sol: `0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B`](https://goerli.etherscan.io/address/0xd99884fE5d9aCE5ECa73Dd5D4c0fe123F1560B7B#code)
-- citizens/OperatorSkillLevels.sol: [`0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7`](https://goerli.etherscan.io/address/0xfB9deD3Aa0B4A3A53c16D959aaEAbacD37c23eF7#code)
-- citizens/MarketeerSkillLevels.sol: [`0xdf691B0948AdaA27F44B390055E162B1466d6cc8`](https://goerli.etherscan.io/address/0xdf691B0948AdaA27F44B390055E162B1466d6cc8#code)
+- `citizens/`
 
-- GitHubUsernames.sol: `0x1bDa420e57059FB7C97B13DE7F7Dd719371E0291`
-- Discord.sol: `0x4BD52941D5C14035F49C93ab6EB3878DDa063119`
-- NationCred.sol: [`0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f`](https://goerli.etherscan.io/address/0x12ee4FE795CD3C42422CC7CE8b9446c27BdA531f)
+  - `DeveloperSkillLevels.sol`: [`0xF7639A56A63a3373E235062273C463eF6203101D`](https://sepolia.etherscan.io/address/0xF7639A56A63a3373E235062273C463eF6203101D)
+  - `OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
+  - `MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
 
-### Sepolia
+  - `DiscordUsernames`: [`0x0E9866Eb4E0a2Eac5D65282837E24D8065b53316`](https://sepolia.etherscan.io/address/0x0E9866Eb4E0a2Eac5D65282837E24D8065b53316)
+  - `DiscourseUsernames`: [`0xC94aF6DBE897b8b887d71d0740708012323Fb8C1`](https://sepolia.etherscan.io/address/0xC94aF6DBE897b8b887d71d0740708012323Fb8C1)
+  - `GitHubUsernames`: [`0x3807908FDf7bE559C5bF21d349326da5cCE86692`](https://sepolia.etherscan.io/address/0x3807908FDf7bE559C5bF21d349326da5cCE86692)
 
-- utils/PassportUtils.sol: `0x90EC93e8B5948b1F7759692fB3082ACd3abDa3F8`
-- NationCred.sol: `0xff5F7A95D6dd29a0543f661a148ba1B9ac554763`
+- `rewards/`
 
-### Mainnet
+  - `DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)
+  - `OpsGuildRewardsDistributor.sol`: [`0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485`](https://sepolia.etherscan.io/address/0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485)
+
+- `utils/`
+
+  - `PassportUtils.sol`: [`0x7Ef8C512D39547873A681242EA87881CD2b8B7B7`](https://sepolia.etherscan.io/address/0x7Ef8C512D39547873A681242EA87881CD2b8B7B7)
+
+- `NationCred.sol`: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
+
+#### Ethereum Attestation Service (EAS)
+
+EAS schema for `citizens/DeveloperSkillLevels.sol`, `citizens/OperatorSkillLevels.sol`, `citizens/MarketeerSkillLevels.sol`:
+https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
+
+### Mainnet (`v0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
-- GitHub.sol: `0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`
-- Discord.sol: `0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`
-- Discourse.sol: `0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`
-- NationCred.sol: `0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`
+- `citizens/`
+
+  - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://sepolia.etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
+  - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://sepolia.etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
+  - `GitHubUsernames.sol`: [`0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`](https://sepolia.etherscan.io/address/0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687)
+
+- `NationCred.sol`: [`0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`](https://etherscan.io/address/0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925)
+
+### npm (`v0.6.7`)
+
+https://www.npmjs.com/package/@nation3/nationcred-contracts
+
+```
+cd contracts
+npm adduser
+npm publish --access public
+```
+
+After publishing, bump the version in `package.json` and the `VERSION` constant in each smart contract.

@@ -1,14 +1,13 @@
-import { verifyContract, deployContract } from "./helpers"
+import { verifyContract, deployContract } from "../helpers"
 
 async function main() {
-  const contractName = "NationCred";
-  const contractPath = "contracts/NationCred.sol:NationCred"
+  const contractName = "DiscordUsernames";
+  const contractPath = "contracts/citizens/DiscordUsernames.sol:DiscordUsernames"
 
   // Constructor Args
-  const passportAddress = "0x11f30642277A70Dab74C6fAF4170a8b340BE2f98"; // Sepolia
-  // const passportAddress = "0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333"; // Mainnet
+  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
 
-  const args = [passportAddress];
+  const args = [passportUtilsAddress];
   const contractAddress = await deployContract(contractName, args);
   await verifyContract(contractPath, contractAddress, args);
 }
