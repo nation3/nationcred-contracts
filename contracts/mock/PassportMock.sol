@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "hardhat/console.sol";
 
 contract PassportMock is ERC721, Ownable {
     uint256 private _tokenIdCounter;
@@ -13,8 +14,9 @@ contract PassportMock is ERC721, Ownable {
     {}
 
     function safeMint(address to) public onlyOwner {
+        console.log("safeMint");
         uint256 tokenId = _tokenIdCounter;
         _tokenIdCounter++;
-        _safeMint(to, _tokenIdCounter);
+        _safeMint(to, tokenId);
     }
 }
