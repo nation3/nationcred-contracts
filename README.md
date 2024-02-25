@@ -129,7 +129,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
   - `PassportUtils.sol`: [`0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff`](https://sepolia.etherscan.io/address/0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff)
 
-- `NationCred.sol`: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
+- `NationCred.sol`: [`0x3C38FBe04C455eFaF762d00c400e1A6589f7269A`](https://sepolia.etherscan.io/address/0x3C38FBe04C455eFaF762d00c400e1A6589f7269A)
 
 ### Mainnet (`v0`)
 
