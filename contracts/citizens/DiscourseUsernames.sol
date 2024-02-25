@@ -1,10 +1,10 @@
 //SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
 contract DiscourseUsernames {
-    string public constant VERSION = "0.6.7";
+    string public constant VERSION = "0.6.8";
     address public owner;
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;

@@ -106,35 +106,30 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (`v0.6.7`)
+### Sepolia (`v0.6.8`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `citizens/`
 
-  - `DeveloperSkillLevels.sol`: [`0xF7639A56A63a3373E235062273C463eF6203101D`](https://sepolia.etherscan.io/address/0xF7639A56A63a3373E235062273C463eF6203101D)
-  - `OperatorSkillLevels.sol`: [`0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9`](https://sepolia.etherscan.io/address/0xd5199a4bc8E9159A9f5F739034071a5F3ddB71b9)
-  - `MarketeerSkillLevels.sol`: [`0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9`](https://sepolia.etherscan.io/address/0x0360Fb7f6C37Dc68046124ba029CAeee8Fd124D9)
+  - `DeveloperSkillLevels.sol`: [`0x2BD5C377d848923d054E49D518D22b675a439d38`](https://sepolia.etherscan.io/address/0x2BD5C377d848923d054E49D518D22b675a439d38)
+  - `OperatorSkillLevels.sol`: [`0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072`](https://sepolia.etherscan.io/address/0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072)
+  - `MarketeerSkillLevels.sol`: [`0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b`](https://sepolia.etherscan.io/address/0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b)
 
-  - `DiscordUsernames`: [`0x0E9866Eb4E0a2Eac5D65282837E24D8065b53316`](https://sepolia.etherscan.io/address/0x0E9866Eb4E0a2Eac5D65282837E24D8065b53316)
-  - `DiscourseUsernames`: [`0xC94aF6DBE897b8b887d71d0740708012323Fb8C1`](https://sepolia.etherscan.io/address/0xC94aF6DBE897b8b887d71d0740708012323Fb8C1)
-  - `GitHubUsernames`: [`0x3807908FDf7bE559C5bF21d349326da5cCE86692`](https://sepolia.etherscan.io/address/0x3807908FDf7bE559C5bF21d349326da5cCE86692)
+  - `DiscordUsernames`: [`0xD105f567dA9d3F0c25F4c036c19Cf5E521987bD5`](https://sepolia.etherscan.io/address/0xD105f567dA9d3F0c25F4c036c19Cf5E521987bD5)
+  - `DiscourseUsernames`: [`0xFF260Bc90f94087FCbd4939BD46d743F02B20B82`](https://sepolia.etherscan.io/address/0xFF260Bc90f94087FCbd4939BD46d743F02B20B82)
+  - `GitHubUsernames`: [`0x6C31d70a6b20Ccd3DB454aFE1Bc4FB780C380F47`](https://sepolia.etherscan.io/address/0x6C31d70a6b20Ccd3DB454aFE1Bc4FB780C380F47)
 
 - `rewards/`
 
-  - `DevGuildRewardsDistributor.sol`: [`0xD86272F30AF4f9221D2d28547F125B061eB8Ef05`](https://sepolia.etherscan.io/address/0xD86272F30AF4f9221D2d28547F125B061eB8Ef05)
-  - `OpsGuildRewardsDistributor.sol`: [`0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485`](https://sepolia.etherscan.io/address/0xf4c8fBB8Ba3eB841210418bcDf0BD9bE5fBb3485)
+  - `DevGuildRewardsDistributor.sol`: [`0xEa075d0B268e0BF5DDEF0E72640E4E7101868C14`](https://sepolia.etherscan.io/address/0xEa075d0B268e0BF5DDEF0E72640E4E7101868C14)
+  - `OpsGuildRewardsDistributor.sol`: [`0x01155f6475186a14C227E5Ad727F9838094cFb61`](https://sepolia.etherscan.io/address/0x01155f6475186a14C227E5Ad727F9838094cFb61)
 
 - `utils/`
 
-  - `PassportUtils.sol`: [`0x7Ef8C512D39547873A681242EA87881CD2b8B7B7`](https://sepolia.etherscan.io/address/0x7Ef8C512D39547873A681242EA87881CD2b8B7B7)
+  - `PassportUtils.sol`: [`0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff`](https://sepolia.etherscan.io/address/0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff)
 
-- `NationCred.sol`: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
-
-#### Ethereum Attestation Service (EAS)
-
-EAS schema for `citizens/DeveloperSkillLevels.sol`, `citizens/OperatorSkillLevels.sol`, `citizens/MarketeerSkillLevels.sol`:
-https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
+- `NationCred.sol`: [`0x3C38FBe04C455eFaF762d00c400e1A6589f7269A`](https://sepolia.etherscan.io/address/0x3C38FBe04C455eFaF762d00c400e1A6589f7269A)
 
 ### Mainnet (`v0`)
 
@@ -148,7 +143,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `NationCred.sol`: [`0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`](https://etherscan.io/address/0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925)
 
-### npm (`v0.6.7`)
+### npm (`v0.6.8`)
 
 https://www.npmjs.com/package/@nation3/nationcred-contracts
 

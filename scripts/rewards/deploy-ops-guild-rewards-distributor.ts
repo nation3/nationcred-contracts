@@ -5,7 +5,7 @@ async function main() {
   const contractPath = "contracts/rewards/OpsGuildRewardsDistributor.sol:OpsGuildRewardsDistributor"
 
   // Constructor Args
-  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
+  const passportUtilsAddress = "0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff"; // Sepolia
   const rewardTokenAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Sepolia
   const CLIFF_VESTING_DATE = 1735689600; // 2025-01-01
 

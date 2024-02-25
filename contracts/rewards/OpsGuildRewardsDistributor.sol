@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -24,7 +24,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  *     https://nation3.org
  */
 contract OpsGuildRewardsDistributor {
-    string public constant VERSION = "0.6.7";
+    string public constant VERSION = "0.6.8";
 
     address public owner;
     IPassportUtils public passportUtils;
