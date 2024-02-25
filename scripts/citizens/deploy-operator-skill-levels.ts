@@ -5,7 +5,7 @@ async function main() {
   const contractPath = "contracts/citizens/OperatorSkillLevels.sol:OperatorSkillLevels"
 
   // Constructor Args
-  const passportUtilsAddress = "0x4C72e8f37a2652BA6eEE956Ab30Ff21C3514cb5a"; // Sepolia
+  const passportUtilsAddress = "0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff"; // Sepolia
 
   const args = [passportUtilsAddress];
 
