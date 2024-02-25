@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract PassportMock is ERC721, Ownable {
     uint256 private _tokenIdCounter;
 
-    constructor() ERC721("Nation3 Genesis Passport", "PASS3") {}
+    constructor() ERC721("Nation3 Genesis Passport", "PASS3") Ownable(msg.sender) {}
 
     function safeMint(address to) public onlyOwner {
         uint256 tokenId = _tokenIdCounter;
