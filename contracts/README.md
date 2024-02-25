@@ -11,7 +11,7 @@ npm install @nation3/nationcred-contracts
 ## Usage
 
 ```solidity
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import { IPassportUtils } from "@nation3/nationcred-contracts/utils/IPassportUtils.sol";
 

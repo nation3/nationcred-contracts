@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 import {IEAS, AttestationRequest, AttestationRequestData} from "@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol";
