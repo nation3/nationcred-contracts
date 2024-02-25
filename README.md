@@ -131,11 +131,6 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `NationCred.sol`: [`0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42`](https://sepolia.etherscan.io/address/0x0EF98EaE3021B91Cc84E0dd59BAA35cB59981E42)
 
-#### Ethereum Attestation Service (EAS)
-
-EAS schema for `citizens/DeveloperSkillLevels.sol`, `citizens/OperatorSkillLevels.sol`, `citizens/MarketeerSkillLevels.sol`:
-https://sepolia.easscan.org/schema/view/0x8233d9319f24851e27b79cd7c3afe2e22a125b722435733d8b428b85d6e2ab8b
-
 ### Mainnet (`v0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/mainnet.json

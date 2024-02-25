@@ -2,8 +2,6 @@
 pragma solidity ^0.8.20;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
-import {IEAS, AttestationRequest, AttestationRequestData} from "@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol";
-import {NO_EXPIRATION_TIME, EMPTY_UID} from "@ethereum-attestation-service/eas-contracts/contracts/Common.sol";
 
 /**
  *        ---------::::
@@ -32,8 +30,6 @@ contract DeveloperSkillLevels {
     mapping(address => uint256) private skillLevelRatingsSum;
     mapping(address => mapping(address => uint8)) public skillLevelRatings;
     IPassportUtils public passportUtils;
-    IEAS private immutable eas;
-    bytes32 private immutable easSchemaUID;
 
     error NotPassportOwner(address illegalAlien);
     error PassportExpired(address citizen);
@@ -41,11 +37,9 @@ contract DeveloperSkillLevels {
 
     event Rated(address developer, uint8 rating, address citizen);
 
-    constructor(address passportUtils_, address eas_, bytes32 easSchemaUID_) {
+    constructor(address passportUtils_) {
         owner = address(msg.sender);
         passportUtils = IPassportUtils(passportUtils_);
-        eas = IEAS(eas_);
-        easSchemaUID = easSchemaUID_;
     }
 
     function setOwner(address owner_) public {
@@ -99,19 +93,5 @@ contract DeveloperSkillLevels {
         skillLevelAverages[developer] = newSkillLevelAverage;
         skillLevelRatings[developer][msg.sender] = rating;
         emit Rated(developer, rating, msg.sender);
-
-        eas.attest(
-            AttestationRequest({
-                schema: easSchemaUID,
-                data: AttestationRequestData({
-                    recipient: developer,
-                    expirationTime: NO_EXPIRATION_TIME,
-                    revocable: false,
-                    refUID: EMPTY_UID,
-                    data: abi.encode("Developer", rating),
-                    value: 0
-                })
-            })
-        );
     }
 }
