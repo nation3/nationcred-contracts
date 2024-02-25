@@ -106,7 +106,7 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (`v0.6.7`)
+### Sepolia (`v0.6.8`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
@@ -143,7 +143,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `NationCred.sol`: [`0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`](https://etherscan.io/address/0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925)
 
-### npm (`v0.6.7`)
+### npm (`v0.6.8`)
 
 https://www.npmjs.com/package/@nation3/nationcred-contracts
 
