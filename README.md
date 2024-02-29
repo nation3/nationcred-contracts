@@ -27,6 +27,8 @@ npx hardhat test
 
 [![codecov](https://codecov.io/gh/nation3/nationcred-contracts/branch/main/graph/badge.svg)](https://codecov.io/gh/nation3/nationcred-contracts)
 
+[![codecov](https://codecov.io/gh/nation3/nationcred-contracts/graphs/icicle.svg?token=QTWCMDDWWY)](https://codecov.io/gh/nation3/nationcred-contracts)
+
 Run code coverage:
 
 ```
