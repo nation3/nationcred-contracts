@@ -108,7 +108,7 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (`v0.6.8`)
+### Sepolia (`v0.6.9`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
@@ -129,7 +129,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `utils/`
 
-  - `PassportUtils.sol`: [`0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff`](https://sepolia.etherscan.io/address/0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff)
+  - `PassportUtils.sol`: [`0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59`](https://sepolia.etherscan.io/address/0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59)
 
 - `NationCred.sol`: [`0x3C38FBe04C455eFaF762d00c400e1A6589f7269A`](https://sepolia.etherscan.io/address/0x3C38FBe04C455eFaF762d00c400e1A6589f7269A)
 

@@ -4,7 +4,7 @@ pragma solidity ^0.8.21;
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
 contract DiscourseUsernames {
-    string public constant VERSION = "0.6.8";
+    string public constant VERSION = "0.6.9";
     address public owner;
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;

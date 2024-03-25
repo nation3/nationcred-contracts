@@ -25,7 +25,7 @@ import "../governance/IVotingEscrow.sol";
  *     https://nation3.org
  */
 contract PassportUtils is IPassportUtils {
-    string public constant VERSION = "0.6.8";
+    string public constant VERSION = "0.6.9";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 
