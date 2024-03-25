@@ -16,13 +16,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // Go to https://hardhat.org/config/ to learn more
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.20",
+  solidity: "0.8.21",
   networks: {
-    goerli: {
-      url: process.env.GOERLI_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
     sepolia: {
       url: process.env.SEPOLIA_URL || "",
       accounts:
@@ -32,6 +27,7 @@ const config: HardhatUserConfig = {
       url: process.env.MAINNET_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 14_000_000_000 // 14 GWei
     },
   },
   gasReporter: {

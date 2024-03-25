@@ -1,10 +1,10 @@
-//SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: GPL-3.0-or-later
+pragma solidity ^0.8.21;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
 contract DiscordUsernames {
-    string public constant VERSION = "0.6.8";
+    string public constant VERSION = "0.6.9";
     address public owner;
     mapping(address => string) public usernames;
     IPassportUtils public passportUtils;

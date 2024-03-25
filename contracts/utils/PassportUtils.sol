@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.21;
 
 import "./IPassportUtils.sol";
 import "../passport/IPassportIssuer.sol";
@@ -25,7 +25,7 @@ import "../governance/IVotingEscrow.sol";
  *     https://nation3.org
  */
 contract PassportUtils is IPassportUtils {
-    string public constant VERSION = "0.6.8";
+    string public constant VERSION = "0.6.9";
     IPassportIssuer public passportIssuer;
     IVotingEscrow public votingEscrow;
 

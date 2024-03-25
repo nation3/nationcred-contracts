@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.21;
 
 import {IPassportUtils} from "../utils/IPassportUtils.sol";
 
@@ -23,7 +23,7 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  *     https://nation3.org
  */
 contract MarketeerSkillLevels {
-    string public constant VERSION = "0.6.8";
+    string public constant VERSION = "0.6.9";
     address public owner;
     mapping(address => uint256) public skillLevelAverages;
     mapping(address => uint8) public skillLevelRatingsCount;
