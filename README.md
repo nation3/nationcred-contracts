@@ -114,7 +114,7 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `citizens/`
 
-  - `DeveloperSkillLevels.sol`: [`0x2BD5C377d848923d054E49D518D22b675a439d38`](https://sepolia.etherscan.io/address/0x2BD5C377d848923d054E49D518D22b675a439d38)
+  - `DeveloperSkillLevels.sol`: [`0x9e18b955D2a0d7eFcf7cd1aEbE4aB949F6af2A91`](https://sepolia.etherscan.io/address/0x9e18b955D2a0d7eFcf7cd1aEbE4aB949F6af2A91)
   - `OperatorSkillLevels.sol`: [`0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072`](https://sepolia.etherscan.io/address/0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072)
   - `MarketeerSkillLevels.sol`: [`0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b`](https://sepolia.etherscan.io/address/0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b)
 
