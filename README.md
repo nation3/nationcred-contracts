@@ -139,15 +139,15 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `citizens/`
 
-  - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://sepolia.etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
-  - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://sepolia.etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
-  - `GitHubUsernames.sol`: [`0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`](https://sepolia.etherscan.io/address/0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687)
+  - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
+  - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
+  - `GitHubUsernames.sol`: [`0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687`](https://etherscan.io/address/0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687)
 
 - `NationCred.sol`: [`0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925`](https://etherscan.io/address/0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925)
 
 - `utils/`
 
-  - `PassportUtils.sol`: [`0x23Ca3002706b71a440860E3cf8ff64679A00C9d7`](https://sepolia.etherscan.io/address/0x23Ca3002706b71a440860E3cf8ff64679A00C9d7)
+  - `PassportUtils.sol`: [`0x23Ca3002706b71a440860E3cf8ff64679A00C9d7`](https://etherscan.io/address/0x23Ca3002706b71a440860E3cf8ff64679A00C9d7)
 
 ### npm (`v0.6.9`)
 
