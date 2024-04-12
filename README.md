@@ -108,7 +108,7 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (`v0.6.9`)
+### Sepolia (`v0.7.0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 

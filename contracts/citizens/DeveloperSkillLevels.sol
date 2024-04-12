@@ -23,7 +23,7 @@ import {IPassportUtils} from "../utils/IPassportUtils.sol";
  *     https://nation3.org
  */
 contract DeveloperSkillLevels {
-    string public constant VERSION = "0.6.9";
+    string public constant VERSION = "0.7.0";
     address public owner;
     mapping(address => uint256) public skillLevelAverages;
     mapping(address => uint8) public skillLevelRatingsCount;
