@@ -5,8 +5,8 @@ async function main() {
   const contractPath = "contracts/citizens/DeveloperSkillLevels.sol:DeveloperSkillLevels"
 
   // Constructor Args
-  const passportUtilsAddress = "0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59"; // Sepolia
-  // const passportUtilsAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Mainnet
+  // const passportUtilsAddress = "0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59"; // Sepolia
+  const passportUtilsAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Mainnet
 
   const args = [passportUtilsAddress];
   const contractAddress = await deployContract(contractName, args);
