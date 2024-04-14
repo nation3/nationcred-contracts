@@ -108,13 +108,13 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ## Deployments
 
-### Sepolia (`v0.6.9`)
+### Sepolia (`v0.7.0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `citizens/`
 
-  - `DeveloperSkillLevels.sol`: [`0x2BD5C377d848923d054E49D518D22b675a439d38`](https://sepolia.etherscan.io/address/0x2BD5C377d848923d054E49D518D22b675a439d38)
+  - `DeveloperSkillLevels.sol`: [`0x9e18b955D2a0d7eFcf7cd1aEbE4aB949F6af2A91`](https://sepolia.etherscan.io/address/0x9e18b955D2a0d7eFcf7cd1aEbE4aB949F6af2A91)
   - `OperatorSkillLevels.sol`: [`0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072`](https://sepolia.etherscan.io/address/0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072)
   - `MarketeerSkillLevels.sol`: [`0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b`](https://sepolia.etherscan.io/address/0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b)
 
@@ -133,11 +133,13 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `NationCred.sol`: [`0x3C38FBe04C455eFaF762d00c400e1A6589f7269A`](https://sepolia.etherscan.io/address/0x3C38FBe04C455eFaF762d00c400e1A6589f7269A)
 
-### Mainnet (`v0.6.9`)
+### Mainnet (`v0.7.0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `citizens/`
+
+  - `DeveloperSkillLevels.sol`: [`0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c`](https://etherscan.io/address/0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c)
 
   - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
   - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
