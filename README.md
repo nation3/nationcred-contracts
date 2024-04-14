@@ -133,11 +133,13 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 
 - `NationCred.sol`: [`0x3C38FBe04C455eFaF762d00c400e1A6589f7269A`](https://sepolia.etherscan.io/address/0x3C38FBe04C455eFaF762d00c400e1A6589f7269A)
 
-### Mainnet (`v0.6.9`)
+### Mainnet (`v0.7.0`)
 
 https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 - `citizens/`
+
+  - `DeveloperSkillLevels.sol`: [`0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c`](https://etherscan.io/address/0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c)
 
   - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
   - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
