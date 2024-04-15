@@ -152,7 +152,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
   - `PassportUtils.sol`: [`0x23Ca3002706b71a440860E3cf8ff64679A00C9d7`](https://etherscan.io/address/0x23Ca3002706b71a440860E3cf8ff64679A00C9d7)
 
-### npm (`v0.6.9`)
+### npm (`v0.7.0`)
 
 https://www.npmjs.com/package/@nation3/nationcred-contracts
 
