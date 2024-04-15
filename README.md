@@ -140,6 +140,7 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 - `citizens/`
 
   - `DeveloperSkillLevels.sol`: [`0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c`](https://etherscan.io/address/0x4E8231B8374DBd70E8BDD7c7779BEa457318a21c)
+  - `OperatorSkillLevels.sol`: [`0x8100e77899C24b0F7B516153F84868f850C034BF`](https://etherscan.io/address/0x8100e77899C24b0F7B516153F84868f850C034BF)
 
   - `Discord.sol`: [`0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad`](https://etherscan.io/address/0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad)
   - `Discourse.sol`: [`0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F`](https://etherscan.io/address/0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F)
