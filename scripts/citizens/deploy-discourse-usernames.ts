@@ -6,7 +6,8 @@ async function main() {
   const contractPath = "contracts/citizens/DiscourseUsernames.sol:DiscourseUsernames"
 
   // Constructor Args
-  const passportUtilsAddress = "0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff"; // Sepolia
+  // const passportUtilsAddress = "0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59"; // Sepolia
+  const passportUtilsAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Mainnet
 
   const args = [passportUtilsAddress];
   const contractAddress = await deployContract(contractName, args);
