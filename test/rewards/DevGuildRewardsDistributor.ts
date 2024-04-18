@@ -102,7 +102,20 @@ describe("DevGuildRewardsDistributor", function () {
   });
   
   it("claim - citizen with valid passport - vesting date not yet reached", async function () {
-    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken, votingEscrow } = await loadFixture(deploymentFixture);
+    
+    // Lock 3 $NATION for 4 years
+    const initialLockDate = new Date(await time.latest() * 1_000);
+    console.log("initialLockDate:", initialLockDate);
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      initialLockDate.getTime() + 4 * ONE_YEAR_IN_SECS * 1_000
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
     
     // Claim passport
     await passportIssuer.claim();
@@ -131,7 +144,20 @@ describe("DevGuildRewardsDistributor", function () {
   });
 
   it("claim - citizen with valid passport - vesting date reached", async function () {
-    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken } = await loadFixture(deploymentFixture);
+    const { owner, devGuildRewardsDistributor, passportIssuer, rewardToken, votingEscrow } = await loadFixture(deploymentFixture);
+    
+    // Lock 3 $NATION for 4 years
+    const initialLockDate = new Date(await time.latest() * 1_000);
+    console.log("initialLockDate:", initialLockDate);
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      initialLockDate.getTime() + 4 * ONE_YEAR_IN_SECS * 1_000
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
     
     // Claim passport
     await passportIssuer.claim();

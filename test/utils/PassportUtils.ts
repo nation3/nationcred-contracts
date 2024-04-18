@@ -35,7 +35,7 @@ describe("PassportUtils", function () {
       );
 
       // Claim passport
-      await passportIssuer.connect(owner).claim();
+      await passportIssuer.claim();
 
       expect(await passportUtils.isOwner(owner.address)).to.equal(
         true
