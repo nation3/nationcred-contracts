@@ -54,15 +54,21 @@ describe("PassportUtils", function () {
       );
     });
 
-    it("should return true if voting escrow balance is 1.4999", async function () {
-      const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
+    it("should return true if voting escrow balance is 1.49", async function () {
+      const { votingEscrow, passportUtils, otherAccount, passportIssuer } = await loadFixture(
         deploymentFixture
       );
 
-      // Transfer 1.4999 $veNATION to the second account
-      await votingEscrow.transfer(
-        otherAccount.address,
-        ethers.utils.parseUnits("1.4999")
+      // Lock 1.49 $NATION for 4 years
+      const initialLockDate = new Date(await time.latest() * 1_000);
+      const lockAmount = ethers.utils.parseUnits("1.49");
+      const lockEnd = new Date(
+        initialLockDate.getTime() + 4 * oneYearInMilliseconds
+      );
+      const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+      await votingEscrow.connect(otherAccount).create_lock(
+        lockAmount,
+        ethers.BigNumber.from(lockEndInSeconds)
       );
 
       expect(await passportUtils.isExpired(otherAccount.address)).to.equal(
@@ -70,15 +76,21 @@ describe("PassportUtils", function () {
       );
     });
 
-    it("should return false if voting escrow balance is 1.5000", async function () {
-      const { votingEscrow, passportUtils, otherAccount } = await loadFixture(
+    it("should return false if voting escrow balance is 1.51", async function () {
+      const { votingEscrow, passportUtils, otherAccount, passportIssuer } = await loadFixture(
         deploymentFixture
       );
 
-      // Transfer 1.5000 $veNATION to the second account
-      await votingEscrow.transfer(
-        otherAccount.address,
-        ethers.utils.parseUnits("1.5000")
+      // Lock 1.51 $NATION for 4 years
+      const initialLockDate = new Date(await time.latest() * 1_000);
+      const lockAmount = ethers.utils.parseUnits("1.51");
+      const lockEnd = new Date(
+        initialLockDate.getTime() + 4 * oneYearInMilliseconds
+      );
+      const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+      await votingEscrow.connect(otherAccount).create_lock(
+        lockAmount,
+        ethers.BigNumber.from(lockEndInSeconds)
       );
 
       expect(await passportUtils.isExpired(otherAccount.address)).to.equal(
