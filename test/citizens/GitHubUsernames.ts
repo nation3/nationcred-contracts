@@ -2,6 +2,8 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
+const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
+
 describe("GitHubUsernames", function () {
   async function deploymentFixture() {
     console.log("deploymentFixture");
@@ -26,7 +28,7 @@ describe("GitHubUsernames", function () {
     const githubUsernames = await GitHubUsernames.deploy(passportUtils.address);
     await githubUsernames.deployed();
 
-    return { owner, otherAccount, githubUsernames, passportIssuer };
+    return { owner, otherAccount, githubUsernames, passportIssuer, votingEscrow };
   }
 
   it("usernames empty", async function () {
@@ -38,7 +40,18 @@ describe("GitHubUsernames", function () {
   });
 
   it("updateUsername - citizen with valid passport", async function () {
-    const { owner, githubUsernames, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, githubUsernames, passportIssuer, votingEscrow } = await loadFixture(deploymentFixture);
+
+    // Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
 
     // Claim passport
     await passportIssuer.claim();
