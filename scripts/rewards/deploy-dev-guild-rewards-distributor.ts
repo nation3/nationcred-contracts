@@ -1,14 +1,26 @@
 import { verifyContract, deployContract } from "../helpers"
+import hre from "hardhat"
 
 async function main() {
   const contractName = "DevGuildRewardsDistributor";
   const contractPath = "contracts/rewards/DevGuildRewardsDistributor.sol:DevGuildRewardsDistributor"
 
+  // Load deployment configurations
+  const networkName = hre.network.name;
+  console.log('networkName:', networkName);
+  const deploymentsFilename = (networkName == "mainnet") ? "mainnet.json" : "sepolia.json";
+  console.log('deploymentsFilename:', deploymentsFilename);
+  
+  const deploymentsNationCred = require(`../../deployments/${deploymentsFilename}`);
+  console.log("deploymentsNationCred:", deploymentsNationCred);
+  
+  const deploymentsFoundationsResponse = await fetch(`https://raw.githubusercontent.com/nation3/foundations/main/deployments/${deploymentsFilename}`);
+  const deploymentsFoundations = JSON.parse(await deploymentsFoundationsResponse.text());
+  console.log("deploymentsFoundations:", deploymentsFoundations);
+
   // Constructor Args
-  // const passportUtilsAddress = "0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59"; // Sepolia
-  // const rewardTokenAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Sepolia
-  const passportUtilsAddress = "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7"; // Mainnet
-  const rewardTokenAddress = "0x333A4823466879eeF910A04D473505da62142069"; // Mainnet
+  const passportUtilsAddress = deploymentsNationCred["utils/PassportUtils.sol"];
+  const rewardTokenAddress = deploymentsFoundations["nationToken"];
   const CLIFF_VESTING_DATE = 1735689600; // 2025-01-01
 
   const args = [passportUtilsAddress, rewardTokenAddress, CLIFF_VESTING_DATE];

@@ -1,12 +1,21 @@
 import { verifyContract, deployContract } from "./helpers"
+import hre from "hardhat"
 
 async function main() {
   const contractName = "NationCred";
   const contractPath = "contracts/NationCred.sol:NationCred"
 
+  // Load deployment configurations
+  const networkName = hre.network.name;
+  console.log('networkName:', networkName);
+  const deploymentsFilename = (networkName == "mainnet") ? "mainnet.json" : "sepolia.json";
+
+  const deploymentsFoundationsResponse = await fetch(`https://raw.githubusercontent.com/nation3/foundations/main/deployments/${deploymentsFilename}`);
+  const deploymentsFoundations = JSON.parse(await deploymentsFoundationsResponse.text());
+  console.log("deploymentsFoundations:", deploymentsFoundations);
+
   // Constructor Args
-  const passportAddress = "0x11f30642277A70Dab74C6fAF4170a8b340BE2f98"; // Sepolia
-  // const passportAddress = "0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333"; // Mainnet
+  const passportAddress = deploymentsFoundations["nationPassportNFT"];
 
   const args = [passportAddress];
   const contractAddress = await deployContract(contractName, args);
