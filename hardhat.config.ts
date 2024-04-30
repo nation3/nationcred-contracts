@@ -35,7 +35,7 @@ const config: HardhatUserConfig = {
       url: process.env.MAINNET_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-      gasPrice: 10_000_000_000 // 10 GWei
+      gasPrice: 6_000_000_000 // 6 GWei
     },
   },
   gasReporter: {
