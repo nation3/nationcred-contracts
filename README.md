@@ -110,8 +110,6 @@ npx hardhat verify --network mainnet <address> <parameters>
 
 ### Sepolia (`v0.7.0`)
 
-https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
-
 [`deployments/sepolia.json`](./deployments/sepolia.json)
 
 - `citizens/`
@@ -136,8 +134,6 @@ https://github.com/nation3/foundations/blob/main/deployments/sepolia.json
 - `NationCred.sol`
 
 ### Mainnet (`v0.7.0`)
-
-https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
 
 [`deployments/sepolia.json`](./deployments/sepolia.json)
 
