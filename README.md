@@ -150,6 +150,11 @@ https://github.com/nation3/foundations/blob/main/deployments/mainnet.json
   - `Discourse.sol`
   - `GitHubUsernames.sol`
 
+- `rewards/`
+
+  - `DevGuildRewardsDistributor.sol`
+  - `OpsGuildRewardsDistributor.sol`
+
 - `utils/`
 
   - `PassportUtils.sol`

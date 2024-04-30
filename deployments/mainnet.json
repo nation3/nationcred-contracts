@@ -4,6 +4,8 @@
   "citizens/Discord.sol": "0x3415f4ffb9f89fba0ab446da4a78223e4cd73bad",
   "citizens/Discourse.sol": "0xC396F3536Cc67913bbE1e5E454c10BBA4ae8928F",
   "citizens/GitHubUsernames.sol": "0xB989C0C17a3Bce679D7586d9e55B6Eab11c18687",
+  "rewards/DevGuildRewardsDistributor.sol": "0x534AB4F195Ac166B78d9edCdbeA04802392711aA",
+  "rewards/OpsGuildRewardsDistributor.sol": "0x03344E221401281F38B2fbc55341b1683Ce978A1",
   "utils/PassportUtils.sol": "0x23Ca3002706b71a440860E3cf8ff64679A00C9d7",
   "NationCred.sol": "0x7794F0Eb1eA812fBcdaBD559551Fb26A79720925"
 }
