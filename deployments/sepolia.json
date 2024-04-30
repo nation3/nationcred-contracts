@@ -1,0 +1,12 @@
+{
+  "citizens/DeveloperSkillLevels.sol": "0x9e18b955D2a0d7eFcf7cd1aEbE4aB949F6af2A91",
+  "citizens/OperatorSkillLevels.sol": "0x2Ea4ECa64479f9E5dCBEF08E1ea9f5E6ddb40072",
+  "citizens/MarketeerSkillLevels.sol": "0x927BD07dC44DAF4cb01DA901008c6088fD8Eaa0b",
+  "citizens/DiscordUsernames.sol": "0xD105f567dA9d3F0c25F4c036c19Cf5E521987bD5",
+  "citizens/DiscourseUsernames.sol": "0xFF260Bc90f94087FCbd4939BD46d743F02B20B82",
+  "citizens/GitHubUsernames.sol": "0x6C31d70a6b20Ccd3DB454aFE1Bc4FB780C380F47",
+  "rewards/DevGuildRewardsDistributor.sol": "0xEa075d0B268e0BF5DDEF0E72640E4E7101868C14",
+  "rewards/OpsGuildRewardsDistributor.sol": "0x01155f6475186a14C227E5Ad727F9838094cFb61",
+  "utils/PassportUtils.sol": "0x88Ea3A3618A988783E39C2CadFdd77Dc07895b59",
+  "NationCred.sol": "0x3C38FBe04C455eFaF762d00c400e1A6589f7269A"
+}

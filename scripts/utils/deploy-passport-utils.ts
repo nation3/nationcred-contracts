@@ -1,14 +1,22 @@
 import { verifyContract, deployContract } from "../helpers"
+import hre from "hardhat"
 
 async function main() {
   const contractName = "PassportUtils";
   const contractPath = "contracts/utils/PassportUtils.sol:PassportUtils"
 
+  // Load deployment configurations
+  const networkName = hre.network.name;
+  console.log('networkName:', networkName);
+  const deploymentsFilename = (networkName == "mainnet") ? "mainnet.json" : "sepolia.json";
+
+  const deploymentsFoundationsResponse = await fetch(`https://raw.githubusercontent.com/nation3/foundations/main/deployments/${deploymentsFilename}`);
+  const deploymentsFoundations = JSON.parse(await deploymentsFoundationsResponse.text());
+  console.log("deploymentsFoundations:", deploymentsFoundations);
+
   // Constructor Args
-  // const passportIssuerAddress = "0xdad32e13E73ce4155a181cA0D350Fee0f2596940"; // Sepolia
-  // const votingEscrowAddress = "0x8100e77899C24b0F7B516153F84868f850C034BF"; // Sepolia
-  const passportIssuerAddress = "0x279c0b6bfCBBA977eaF4ad1B2FFe3C208aa068aC"; // Mainnet
-  const votingEscrowAddress = "0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"; // Mainnet
+  const passportIssuerAddress = deploymentsFoundations["nationPassportNFTIssuer"];
+  const votingEscrowAddress = deploymentsFoundations["veNationToken"];
   
   const args = [passportIssuerAddress, votingEscrowAddress];
   const contractAddress = await deployContract(contractName, args);
