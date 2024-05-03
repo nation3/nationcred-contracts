@@ -2,6 +2,8 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
+const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1_000;
+
 describe("MarketeerSkillLevels", function () {
   async function deploymentFixture() {
     console.log("deploymentFixture");
@@ -91,10 +93,21 @@ describe("MarketeerSkillLevels", function () {
   });
   
   it("rate - citizen with valid passport", async function () {
-    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer, votingEscrow } = await loadFixture(deploymentFixture);
+
+    // Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
 
     // Claim passport
-    await passportIssuer.connect(owner).claim();
+    await passportIssuer.claim();
 
     const tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -105,10 +118,21 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - rating value error", async function () {
-    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer, votingEscrow } = await loadFixture(deploymentFixture);
 
+    // Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
+    
     // Claim passport
-    await passportIssuer.connect(owner).claim();
+    await passportIssuer.claim();
 
     await expect(
         marketeerSkillLevels.rate(owner.address, 6)
@@ -120,10 +144,21 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - self-rating - two ratings with the same value", async function () {
-    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer, votingEscrow } = await loadFixture(deploymentFixture);
 
+    // Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
+    
     // Claim passport
-    await passportIssuer.connect(owner).claim();
+    await passportIssuer.claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -137,10 +172,21 @@ describe("MarketeerSkillLevels", function () {
   });
 
   it("rate - self-rating - two ratings with different values", async function () {
-    const { owner, marketeerSkillLevels, passportIssuer } = await loadFixture(deploymentFixture);
+    const { owner, marketeerSkillLevels, passportIssuer, votingEscrow } = await loadFixture(deploymentFixture);
 
+    // Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
+    
     // Claim passport
-    await passportIssuer.connect(owner).claim();
+    await passportIssuer.claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
@@ -156,19 +202,30 @@ describe("MarketeerSkillLevels", function () {
   it("rate - two citizens rating - each rating with a different value", async function () {
     const { owner, otherAccount, marketeerSkillLevels, votingEscrow, passportIssuer } = await loadFixture(deploymentFixture);
 
-    // Claim passport
-    await passportIssuer.connect(owner).claim();
+    // owner - Lock 3 $NATION for 4 years
+    const lockAmount = ethers.utils.parseUnits("3");
+    const lockEnd = new Date(
+      new Date().getTime() + 4 * oneYearInMilliseconds
+    );
+    const lockEndInSeconds = Math.round(lockEnd.getTime() / 1_000);
+    await votingEscrow.create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
+    
+    // owner - Claim passport
+    await passportIssuer.claim();
 
     let tx = await marketeerSkillLevels.rate(owner.address, 3);
     // console.log('tx:', tx);
     
-    // Send veNATION to the other account to enable rating
-    await votingEscrow.transfer(otherAccount.address, ethers.utils.parseUnits("50"));
-    expect(
-        await votingEscrow.balanceOf(otherAccount.address)
-    ).to.equal(ethers.utils.parseUnits("50"));
+    // otherAccount - Lock 3 $NATION for 4 years
+    await votingEscrow.connect(otherAccount).create_lock(
+      lockAmount,
+      ethers.BigNumber.from(lockEndInSeconds)
+    );
 
-    // Claim passport
+    // otherAccount - Claim passport
     await passportIssuer.connect(otherAccount).claim();
 
     tx = await marketeerSkillLevels.connect(otherAccount).rate(owner.address, 4);

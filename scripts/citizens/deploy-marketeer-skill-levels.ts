@@ -1,11 +1,21 @@
 import { verifyContract, deployContract } from "../helpers"
+import hre from "hardhat"
 
 async function main() {
   const contractName = "MarketeerSkillLevels";
   const contractPath = "contracts/citizens/MarketeerSkillLevels.sol:MarketeerSkillLevels"
 
+  // Load deployment configurations
+  const networkName = hre.network.name;
+  console.log('networkName:', networkName);
+  const deploymentsFilename = (networkName == "mainnet") ? "mainnet.json" : "sepolia.json";
+  console.log('deploymentsFilename:', deploymentsFilename);
+  
+  const deploymentsNationCred = require(`../../deployments/${deploymentsFilename}`);
+  console.log("deploymentsNationCred:", deploymentsNationCred);
+
   // Constructor Args
-  const passportUtilsAddress = "0x68ADa619A2b806A2bEc8e3789FfBA206641c22ff"; // Sepolia
+  const passportUtilsAddress = deploymentsNationCred["utils/PassportUtils.sol"];
 
   const args = [passportUtilsAddress];
 
